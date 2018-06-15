@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+	${test }
+
 
 	<form action="fact">
 		Day: <input type="number" name="day"> <br> <br>
