@@ -26,10 +26,25 @@
     </script>
 </head>
 <body>
+<<<<<<< HEAD
 <input type="text" id="address" />
 
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
 &libraries=places&callback=initAutocomplete" async defer></script>
+=======
+
+	<h3>Detroit: lat=42.3361, lng=-83.0510</h3>
+
+	<form action="location">
+		Latitude: <input type="number" step="any" name="lat"> <br> <br>
+		Longitude: <input type="number" step="any" name="lng"><br> <input
+			type="submit" value="Submit">
+	</form>
+
+	${test }
+
+
+>>>>>>> 9611ab5513020e02d1e59a0295285549d4a256b3
 </body>
 </html>
