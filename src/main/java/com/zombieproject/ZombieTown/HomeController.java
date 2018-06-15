@@ -14,6 +14,7 @@ public class HomeController {
 
 	@Value("${zombietown.apikey}")
 	private String key;
+	
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -26,7 +27,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("index");
 		RestTemplate restTemplate = new RestTemplate();
 		JsonResponse response = restTemplate.getForObject(
-				"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=50000&key="
+				"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=50000&type=hospital&key="
 						+ key,
 				JsonResponse.class);
 

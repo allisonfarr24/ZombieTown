@@ -9,17 +9,17 @@ public class Results {
 
 	private String[] types;
 	private String name;
-	private Location location;
+	private Geometry geometry;
 
 	public Results() {
 
 	}
 
-	public Results(String[] types, String name, Location location) {
+	public Results(String[] types, String name, Geometry geometry) {
 		super();
 		this.types = types;
 		this.name = name;
-		this.location = location;
+		this.geometry = geometry;
 	}
 
 	public String[] getTypes() {
@@ -38,17 +38,17 @@ public class Results {
 		this.name = name;
 	}
 
-	public Location getLocation() {
-		return location;
+	public Geometry getGeometry() {
+		return geometry;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setGeometry(Geometry geometry) {
+		this.geometry = geometry;
 	}
 
 	@Override
 	public String toString() {
-		return "Results [types=" + Arrays.toString(types) + ", name=" + name + ", location=" + location + "]";
+		return "Results [types=" + Arrays.toString(types) + ", name=" + name + ", geometry=" + geometry + "]";
 	}
 
 }

@@ -9,34 +9,34 @@ public class Location {
 	private double lng;
 
 	public Location() {
-	
+
 	}
 
-	public Location(double latitude, double longitude) {
+	public Location(double lat, double lng) {
 		super();
-		this.lat = latitude;
-		this.lng = longitude;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
-	public double getLatitude() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLatitude(double latitude) {
-		this.lat = latitude;
+	public void setLat(double lat) {
+		this.lat = lat;
 	}
 
-	public double getLongitude() {
+	public double getLng() {
 		return lng;
 	}
 
-	public void setLongitude(double longitude) {
-		this.lng = longitude;
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 
 	@Override
 	public String toString() {
-		return "Location [latitude=" + lat + ", longitude=" + lng + "]";
+		return "Location [lat=" + lat + ", lng=" + lng + "]";
 	}
 
 }
