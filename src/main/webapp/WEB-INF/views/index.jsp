@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,15 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+
+	<h3>Detroit: lat=42.3361, lng=-83.0510</h3>
+
+	<form action="location">
+		Latitude: <input type="number" step="any" name="lat"> <br> <br>
+		Longitude: <input type="number" step="any" name="lng"><br> <input
+			type="submit" value="Submit">
+	</form>
+
 	${test }
 
-
-	<form action="fact">
-		Day: <input type="number" name="day"> <br> <br>
-		Month: <input type="number" name="month"><br>
-		<input type="submit" value="Submit">
-	</form>
 
 </body>
 </html>
