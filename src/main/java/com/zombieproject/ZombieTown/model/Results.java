@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Results {
 
-	private String[] type;
+	private String[] types;
 	private String name;
 	private Location location;
 
@@ -15,19 +15,19 @@ public class Results {
 
 	}
 
-	public Results(String[] type, String name, Location location) {
+	public Results(String[] types, String name, Location location) {
 		super();
-		this.type = type;
+		this.types = types;
 		this.name = name;
 		this.location = location;
 	}
 
-	public String[] getType() {
-		return type;
+	public String[] getTypes() {
+		return types;
 	}
 
-	public void setType(String[] type) {
-		this.type = type;
+	public void setType(String[] types) {
+		this.types = types;
 	}
 
 	public String getName() {
@@ -48,7 +48,7 @@ public class Results {
 
 	@Override
 	public String toString() {
-		return "Results [type=" + Arrays.toString(type) + ", name=" + name + ", location=" + location + "]";
+		return "Results [types=" + Arrays.toString(types) + ", name=" + name + ", location=" + location + "]";
 	}
 
 }
