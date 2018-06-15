@@ -6,31 +6,58 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <script type="text/javascript">
-  function initAutocomplete() {
+ function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
         (document.getElementById('address')),
         {types: ['geocode']});
 
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
+
     autocomplete.addListener('place_changed', fillInAddress);
   }
 
   function fillInAddress() {
-    // Get the place details from the autocomplete object.
+   
     var place = autocomplete.getPlace();
 
   } 
   
-  var key;
  
     </script>
 </head>
 <body>
-<input type="text" id="address" />
-
+<form action="location">
+<input type="text" id="address">
+<input type="text" id="lat" name="lat"></input>
+<input type="hidden" id="lng" name="lng"></input>
+<button type="submit" name="Submit" onclick="getCoordinates();">Search</button>
+</form>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=
 &libraries=places&callback=initAutocomplete" async defer></script>
+<script type="text/javascript">
+function getCoordinates() {
+	var btn = document.getElementById("address").value;
+	
+	
+	var ourRequest = new XMLHttpRequest();
+	// this will open the connection and allow us to get data
+	// first param is what we want to do "GET", second param is the json url
+	
+	ourRequest.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + btn + "&key=");
+
+	ourRequest.onload = function() {
+
+		// console.log(ourRequest.responseText);
+		var ourData = JSON.parse(ourRequest.responseText);
+		//renderHTML(ourData);
+		document.getElementById("lat").value = ourData.results[0].geometry.location.lat;
+		document.getElementById("lng").value = ourData.results[0].geometry.location.lng;
+		return true;
+	};
+
+	ourRequest.send();
+	
+}
+</script>
 </body>
 </html>

@@ -17,7 +17,7 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public ModelAndView home() {
-		System.out.println(key);
+		
 		return new ModelAndView("index");
 	}
 
