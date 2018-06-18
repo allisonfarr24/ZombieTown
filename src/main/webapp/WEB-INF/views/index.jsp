@@ -31,8 +31,9 @@ ${test }
 <form action="location">
 <input type="text" id="address">
 <input type="text" id="lat" name="lat"></input>
-<input type="hidden" id="lng" name="lng"></input>
-<button type="submit" name="Submit" onclick="getCoordinates();">Search</button>
+<input type="text" id="lng" name="lng"></input>
+<button  onclick="getCoordinates();" type="submit">Search</button>
+<button type="submit">Search</button>
 </form>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=
