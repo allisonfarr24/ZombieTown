@@ -25,6 +25,9 @@
     </script>
 </head>
 <body>
+
+${test }
+
 <form action="location">
 <input type="text" id="address">
 <input type="text" id="lat" name="lat"></input>
