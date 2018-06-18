@@ -26,26 +26,12 @@
 </head>
 <body>
 <<<<<<< HEAD
-<form action="location" >
+<form action="counter" >
 <input type="text" id="address" oninput="getCoordinates();">
 <input type="hidden" id="lat" name="lat"></input>
 <input type="hidden" id="lng" name="lng"></input>
 <input type="submit" value="Search">
-=======
 
-${test }
-
-<form action="location">
-<input type="text" id="address">
-<input type="text" id="lat" name="lat"></input>
-<input type="text" id="lng" name="lng"></input>
-<button  onclick="getCoordinates();" type="submit">Search</button>
-<button type="submit">Search</button>
->>>>>>> f3010509c988409bcf9cd2f08f58cbd31cae59a4
-</form>
-
-
-${test }
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
 &libraries=places&callback=initAutocomplete" async defer></script>
