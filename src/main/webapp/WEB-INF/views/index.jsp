@@ -25,15 +25,17 @@
     </script>
 </head>
 <body>
-<form action="location">
-<input type="text" id="address">
-<input type="text" id="lat" name="lat"></input>
-<input type="text" id="lng" name="lng"></input>
-<button  onclick="getCoordinates();" type="submit">Search</button>
-<button type="submit">Search</button>
+<form action="location" >
+<input type="text" id="address" oninput="getCoordinates();">
+<input type="hidden" id="lat" name="lat"></input>
+<input type="hidden" id="lng" name="lng"></input>
+<input type="submit" value="Search">
 </form>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=
+
+${test }
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
 &libraries=places&callback=initAutocomplete" async defer></script>
 <script type="text/javascript">
 function getCoordinates() {
@@ -44,7 +46,7 @@ function getCoordinates() {
 	// this will open the connection and allow us to get data
 	// first param is what we want to do "GET", second param is the json url
 	
-	ourRequest.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + btn + "&key=");
+	ourRequest.open("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + btn + "&key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88");
 
 	ourRequest.onload = function() {
 
