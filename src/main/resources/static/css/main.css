@@ -1,10 +1,22 @@
 @charset "UTF-8";
 
-
-	
-body {background-color: coral;}
-
-
-  a {
-    text-indent: 50px;
+body {
+	background-color: coral;
 }
+
+a {
+	text-indent: 50px;
+}
+
+th {
+	align: center;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
