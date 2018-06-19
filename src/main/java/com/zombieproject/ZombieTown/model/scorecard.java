@@ -5,7 +5,7 @@ public class scorecard {
 	
 	private int hospitals;
 	private int gasStations;
-	private int prison;
+	private int prisons;
 	private int pharmacies;
 	private int police;
 	
@@ -17,7 +17,7 @@ public class scorecard {
 		super();
 		this.hospitals = hospitals;
 		this.gasStations = gasStations;
-		this.prison = prison;
+		this.prisons = prison;
 		this.pharmacies = pharmacies;
 		this.police = police;
 	}
@@ -39,11 +39,11 @@ public class scorecard {
 	}
 
 	public int getPrison() {
-		return prison;
+		return prisons;
 	}
 
 	public void setPrison(int prison) {
-		this.prison = prison;
+		this.prisons = prison;
 	}
 
 	public int getPharmacies() {
@@ -64,7 +64,7 @@ public class scorecard {
 
 	@Override
 	public String toString() {
-		return "scorecard hospitals=" + hospitals + ", gasStations=" + gasStations + ", prison=" + prison
+		return "scorecard hospitals=" + hospitals + ", gasStations=" + gasStations + ", prison=" + prisons
 				+ ", pharmacies=" + pharmacies + ", police=" + police;
 	}
 	
