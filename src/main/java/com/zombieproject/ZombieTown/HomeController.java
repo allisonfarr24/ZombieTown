@@ -29,7 +29,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("index");
 		RestTemplate restTemplate = new RestTemplate();
 		JsonResponse response = restTemplate.getForObject(
-				"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=50000&type=hospital&key="
+				"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=8046&type=hospital&key="
 						+ key,
 				JsonResponse.class);
 
