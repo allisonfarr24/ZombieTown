@@ -2,6 +2,8 @@ package com.zombieproject.ZombieTown;
 
 import java.util.ArrayList;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -50,9 +52,22 @@ public class HomeController {
 		return mv;
 	}
 	
+
+	@RequestMapping("/scorecard")
+	public ModelAndView place () {
+		ArrayList <String> place = new ArrayList<> ();
+		place.add("test1");
+		place.add("test2");
+		place.add("test3");
+		return new ModelAndView ("scorecard", "place", place);
+		
+	}
+	
+
 	private String getType(double lat, double lng, String type) {
 		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=8000&type=" + type + "&key="
 				+ key;
 	}
+
 
 }
