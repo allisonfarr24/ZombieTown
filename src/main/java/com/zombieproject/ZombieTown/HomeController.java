@@ -1,5 +1,7 @@
 package com.zombieproject.ZombieTown;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,15 +26,25 @@ public class HomeController {
 
 	@RequestMapping("/location")
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("scorecard");
+		String[] arr = {"hospital", "gas_station", "pharmacy", "police"};
+		ArrayList<Integer> count = new ArrayList<>();
+		for (int i = 0; i < arr.length; i++) {	
 		RestTemplate restTemplate = new RestTemplate();
-		JsonResponse response = restTemplate.getForObject(
-				"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=50000&type=hospital&key="
-						+ key,
-				JsonResponse.class);
-
-		mv.addObject("test", response);
+		JsonResponse response = restTemplate.getForObject(getType(lat, lng, arr[i]), JsonResponse.class);
+		int num = response.getResults().length;
+		count.add(num);
+		}
+		PrisonController p = new PrisonController();
+		int prison = p.prisonCount(lat, lng);
+		count.add(prison);
+		mv.addObject("place", count);
 		return mv;
+	}
+	
+	private String getType(double lat, double lng, String type) {
+		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=8000&type=" + type + "&key="
+				+ key;
 	}
 
 }
