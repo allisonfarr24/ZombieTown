@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- The is for auto complete -->
+
+<link rel="stylesheet" type="text/css" href="css/main.css"></link>
 <script type="text/javascript">
  function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
