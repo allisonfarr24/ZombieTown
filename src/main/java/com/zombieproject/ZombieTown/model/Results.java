@@ -3,7 +3,7 @@ package com.zombieproject.ZombieTown.model;
 import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+//This can be made into an empty class
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Results {
 

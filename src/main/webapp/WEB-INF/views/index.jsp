@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+<!-- The is for auto complete -->
 <script type="text/javascript">
  function initAutocomplete() {
     autocomplete = new google.maps.places.Autocomplete(
@@ -30,11 +30,11 @@
 <input type="hidden" id="lat" name="lat"></input>
 <input type="hidden" id="lng" name="lng"></input>
 <input type="submit" value="Search">
-${testing }
 </form>
-
+<!-- this the key for auto complete -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
 &libraries=places&callback=initAutocomplete" async defer></script>
+<!-- this is to get the getCoordinates to send data to our location -->
 <script type="text/javascript">
 function getCoordinates() {
 	var btn = document.getElementById("address").value;
