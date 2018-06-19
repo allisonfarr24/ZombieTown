@@ -15,7 +15,7 @@ import com.zombieproject.ZombieTown.repository.PrisonRepository;
 public class PrisonController {
 
 	@Autowired
-	static PrisonRepository p;
+	PrisonRepository p;
 
 	// This method only needs to be run once to populate database in MySQL
 	
@@ -42,7 +42,7 @@ public class PrisonController {
 		return new ModelAndView("counter", "num", count);
 	}
 
-	public static double prisonDistance(String latitude, String longitude, double lat, double lng) {
+	public double prisonDistance(String latitude, String longitude, double lat, double lng) {
 
 		// lat1 and lon1 are Strings coming from database
 		// lat2 and lon2 are doubles coming from Location POJO
@@ -54,13 +54,13 @@ public class PrisonController {
 		return Haversine.haversine(lat1, lon1, lat2, lon2);
 	}
 
-	public static int prisonCount(double lat, double lng) {
+	public int prisonCount(double lat, double lng) {
 		int counter = 0;
 
 		List<Prison> prisonList = p.findAll();
 		for (Prison prison : prisonList) {
 			
-			if (prison.getLatitude() != null) {
+			if (!prison.getLatitude().isEmpty()) {
 				double distance = prisonDistance(prison.getLatitude(), prison.getLongitude(), lat, lng);
 				if (distance < 8.0) {
 					counter++;
