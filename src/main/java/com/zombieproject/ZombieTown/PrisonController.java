@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
+
 import org.springframework.web.client.RestTemplate;
-=======
+
 import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> cad3ce0c35211bc567472f22ad65869245c98354
+
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zombieproject.ZombieTown.model.prison.JsonPrisonResponse;
@@ -23,7 +23,7 @@ public class PrisonController {
 	PrisonRepository p;
 
 	// This method only needs to be run once to populate database in MySQL
-<<<<<<< HEAD
+
 	 @RequestMapping("/prisontest")
 	 public ModelAndView prison() {
 	 ModelAndView mv = new ModelAndView("index");
@@ -41,8 +41,8 @@ public class PrisonController {
 	 return mv;
 	 }
 
-	public double prisonDistance(String latitude, String longitude, double lat, double lng) {
-=======
+
+
 	
 //	 @RequestMapping("/prisontest")
 //	 public ModelAndView prison() {
@@ -68,7 +68,7 @@ public class PrisonController {
 	}
 
 	public static double prisonDistance(String latitude, String longitude, double lat, double lng) {
->>>>>>> cad3ce0c35211bc567472f22ad65869245c98354
+
 
 		// lat1 and lon1 are Strings coming from database
 		// lat2 and lon2 are doubles coming from Location POJO

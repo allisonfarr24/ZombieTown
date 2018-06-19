@@ -11,7 +11,11 @@
 
 <table>
 <c:forEach var ="p" items = "${place}">
-<td> ${ p}
+<td> ${hospitals} </td>
+<td> ${gasStations}</td>
+<td> ${prisons}</td>
+<td> ${pharmacies }</td>
+<td> ${police}</td>
 <tr>
 </c:forEach>
 </table>
