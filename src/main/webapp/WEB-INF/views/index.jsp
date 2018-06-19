@@ -31,7 +31,7 @@
 <input type="hidden" id="lng" name="lng"></input>
 <input type="submit" value="Search">
 ${testing }
-
+</form>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
 &libraries=places&callback=initAutocomplete" async defer></script>
