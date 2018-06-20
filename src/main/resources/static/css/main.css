@@ -1,12 +1,25 @@
 @charset "UTF-8";
 
-body {
-	background-color: coral;
+
+
+
+    
+   body {
+   background-image: url("/zworld3.jpg");
+   background-color: #cccccc;
+   background-repeat: no-repeat;
+   background-size: 1350px 800px;
 }
+  
+h1 {
+    color: yellow;
+}
+ 
 
 a {
 	text-indent: 50px;
 }
+
 
 th {
 	align: center;
