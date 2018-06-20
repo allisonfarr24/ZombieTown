@@ -30,6 +30,9 @@
 	<div class="container centered">
 	<div class="container">
 		<h1>Here is the score break-down:</h1>
+		<h1>${percent } %</h1>
+		<h2>${tester}</h2>
+		
 	</div>
 	<div class="container">
 		<table class="table table-dark table-hover">
