@@ -1,10 +1,16 @@
 @charset "UTF-8";
 
 
-	
-body {background-color: coral;}
-
-
-  a {
-    text-indent: 50px;
+/*  body {background-color: coral;}  */
+    
+   body {
+   background-image: url("/zworld3.jpg");
+   background-color: #cccccc;
+   background-repeat: no-repeat;
+   background-size: 1100px 600px;
 }
+  
+
+ 
+
+
