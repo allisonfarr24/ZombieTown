@@ -33,7 +33,9 @@ public class HomeController {
 
 	@RequestMapping("/location")
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
-		ModelAndView mv = new ModelAndView("scorecard");
+		ModelAndView mv = new ModelAndView("map");
+		mv.addObject("lat", lat);
+		mv.addObject("lng", lng);
 		// Items in this array are place that we are searching for
 		String[] arr = { "hospital", "gas_station", "pharmacy", "police" };
 		// This array list holds count for each place
