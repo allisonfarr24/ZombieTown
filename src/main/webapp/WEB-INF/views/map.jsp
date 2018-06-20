@@ -50,6 +50,59 @@
 </style>
 </head>
 <body>
+<div class="container">
+		<div class="row">
+		<div class="col">
+		<div id="map"></div>
+		</div>
+		<div class="col">
+		<div class="container centered">
+	<div class="container">
+		<h1>Here is the score break-down:</h1>
+		<h1>${percent } %</h1>
+		<h2>${tester}</h2>
+		
+	</div>
+	<div class="container">
+		<table class="table table-dark table-hover">
+			<thead  align="center">
+				<tr>
+					<th align="center">Type of establishment</th>
+					<th align="center">Number within a 5 mile radius</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Hospital</td>
+					<td>${place[0] }</td>
+				</tr>
+				<tr>
+					<td>Gas Stations</td>
+					<td>${place[1] }</td>
+				</tr>
+				<tr>
+					<td>Pharmacies</td>
+					<td>${place[2] }</td>
+				</tr>
+				<tr>
+					<td>Police Stations</td>
+					<td>${place[3] }</td>
+				</tr>
+				<tr>
+					<td>Prisons</td>
+					<td>${place[4] }</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+		</div>
+		</div>
+		
+		
+		</div>
+		
+		
 	<form action="location">
 		<input type="text" id="address"> <input
 			type="hidden" id="lat" name="lat"></input> <input type="hidden"
@@ -76,6 +129,9 @@
 			};
 			ourRequest.send();
 		}
+		
+		
+		
 	</script>
 </body>
 </html>
