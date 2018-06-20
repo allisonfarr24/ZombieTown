@@ -1,16 +1,35 @@
 @charset "UTF-8";
 
 
-/*  body {background-color: coral;}  */
+
+
     
    body {
    background-image: url("/zworld3.jpg");
    background-color: #cccccc;
    background-repeat: no-repeat;
-   background-size: 1100px 600px;
+   background-size: 1350px 800px;
 }
   
-
+h1 {
+    color: yellow;
+}
  
 
+a {
+	text-indent: 50px;
+}
+
+
+th {
+	align: center;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
 
