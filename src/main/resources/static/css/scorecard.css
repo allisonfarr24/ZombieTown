@@ -6,10 +6,16 @@
 
 
 h1 {
-    color: FireBrick;
+    color: gold;
 }
  body {
-   background-image: url("/zworld1.jpg");
+   background-image: url("/zworld2.jpg");
    background-color: #cccccc;
    background-repeat: no-repeat;
    background-size: 1350px 800px;
+}
+td{  color:white;
+
+
+
+}
