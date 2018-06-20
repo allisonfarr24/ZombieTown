@@ -1,7 +1,7 @@
 package com.zombieproject.ZombieTown.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+//currently not using it
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
 
