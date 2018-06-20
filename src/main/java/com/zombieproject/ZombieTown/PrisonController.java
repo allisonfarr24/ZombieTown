@@ -1,11 +1,8 @@
 package com.zombieproject.ZombieTown;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.zombieproject.ZombieTown.model.prison.Prison;
 import com.zombieproject.ZombieTown.repository.PrisonRepository;
 
 @Controller
