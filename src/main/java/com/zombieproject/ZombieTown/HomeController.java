@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zombieproject.ZombieTown.model.GoogleMarks;
 import com.zombieproject.ZombieTown.model.JsonResponse;
 import com.zombieproject.ZombieTown.model.Results;
 import com.zombieproject.ZombieTown.model.prison.Prison;
@@ -39,8 +40,7 @@ public class HomeController {
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
 		ModelAndView mv = new ModelAndView("map");
 		
-		ArrayList<String[]> locations = new ArrayList<String[]>();
-		String[] location = new String[3];
+		ArrayList<GoogleMarks> locations = new ArrayList<GoogleMarks>();
 		
 		mv.addObject("lat", lat);
 		mv.addObject("lng", lng);
@@ -55,13 +55,12 @@ public class HomeController {
 			int num = response.getResults().length;
 			
 			for (Results result : response.getResults()) {
-				location[0] = result.getName();
-				location[1] = Double.toString(result.getGeometry().getLocation().getLat());
-				location[2] = Double.toString(result.getGeometry().getLocation().getLng());
+				String Gname = result.getName();
+				String Glat = Double.toString(result.getGeometry().getLocation().getLat());
+				String Glng = Double.toString(result.getGeometry().getLocation().getLng());
 				
-				System.out.println(Arrays.toString(location));
 
-				locations.add(location);
+				locations.add(new GoogleMarks(Gname, Glat, Glng));
 			}
 			
 			String pageToken = response.getNextPageToken();
@@ -86,9 +85,8 @@ public class HomeController {
 		}
 
 		
-		JSONArray jsonArray = new JSONArray(locations);
 //		String json = new Gson().toJson(locations);
-		mv.addObject("locations", jsonArray);
+		mv.addObject("locations", locations);
 		
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
