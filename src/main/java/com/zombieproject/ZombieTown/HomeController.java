@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -59,7 +60,7 @@ public class HomeController {
 				location[2] = Double.toString(result.getGeometry().getLocation().getLng());
 				
 				System.out.println(Arrays.toString(location));
-				
+
 				locations.add(location);
 			}
 			
@@ -84,7 +85,10 @@ public class HomeController {
 			count.add(num);
 		}
 
-		mv.addObject("locations", locations);
+		
+		JSONArray jsonArray = new JSONArray(locations);
+//		String json = new Gson().toJson(locations);
+		mv.addObject("locations", jsonArray);
 		
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
