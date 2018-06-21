@@ -9,6 +9,9 @@
 <script>
 	var map, infoWindow;
     function initMap() {
+
+    	 var myLatLng = {lat:${lat}, lng:${lng}}; 	
+
     	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
     	
     	    var myLatLng = [
@@ -46,7 +49,7 @@
     	      })(marker, i));
     	    }
     	  initAutocomplete();
-    }
+    
     
 	function initAutocomplete() {
 		autocomplete = new google.maps.places.Autocomplete((document
