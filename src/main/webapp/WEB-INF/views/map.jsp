@@ -16,6 +16,11 @@
     	    zoom: 15,
     	    center: myLatLng
     	  });
+    	  var marker = new google.maps.Marker({
+      	    position: myLatLng,
+      	    map: map,
+      	    title: 'Hello World!'
+      	  });
 
     	  var marker = new google.maps.Marker({
     	    position: myLatLng,
