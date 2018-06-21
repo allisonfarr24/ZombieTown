@@ -46,9 +46,8 @@ public class HomeController {
 			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]), JsonResponse.class);
 			int num = response.getResults().length;
 			
-			while (response.getNextPageToken() != null) {
-				response = restTemplate.getForObject(getNextPageUrl(response.getNextPageToken(),
-						JsonResponse.class);
+			while (!response.getNextPageToken().isEmpty()) {
+				response = restTemplate.getForObject(getNextPageUrl(response.getNextPageToken()), JsonResponse.class);
 				num += response.getResults().length;				
 			}
 			
