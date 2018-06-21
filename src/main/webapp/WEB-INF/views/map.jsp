@@ -5,51 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-
 <script>
-	var map, infoWindow;
-    function initMap() {
+var map, infoWindow;
+function initMap() {
+	 var myLatLng = {lat: ${lat}, lng: ${lng}};	
+	
 
-    	 var myLatLng = {lat:${lat}, lng:${lng}}; 	
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 15,
+	    center: myLatLng
+	  });
 
-    	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
-    	
-    	    var myLatLng = [
-      ['Bondi Beach', -33.890542, 151.274856],
-      ['Coogee Beach', -33.923036, 151.259052],
-      ['Cronulla Beach', -34.028249, 151.157507],
-      ['Manly Beach', -33.80010128657071, 151.28747820854187],
-      ['Maroubra Beach', -33.950198, 151.259302]
-    ];
-    	
-
-    	  var map = new google.maps.Map(document.getElementById('map'), {
-    	    zoom: 15,
-    	    center: myLatLng1
-    	  });
-    	  
-			
-    	  
-    	  
-    	    var infowindow = new google.maps.InfoWindow();
-
-    	    var marker, i;
-
-    	    for (i = 0; i < myLatLng.length; i++) {  
-    	      marker = new google.maps.Marker({
-    	        position: new google.maps.LatLng(myLatLng[i][1], myLatLng[i][2]),
-    	        map: map
-    	      });
-
-    	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-    	        return function() {
-    	          infowindow.setContent(myLatLng[i][0]);
-    	          infowindow.open(map, marker);
-    	        }
-    	      })(marker, i));
-    	    }
-    	  initAutocomplete();
-    
+	  var marker = new google.maps.Marker({
+	    position: myLatLng,
+	    map: map,
+	    title: 'Hello World!'
+	  }); initAutocomplete();
+}
     
 	function initAutocomplete() {
 		autocomplete = new google.maps.places.Autocomplete((document
@@ -80,9 +52,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col">
-				<div id="map"></div>
-			</div>
+			
 			<div class="col">
 				<div class="container centered">
 					<div class="container">
@@ -125,6 +95,9 @@
 					</div>
 				</div>
 			</div>
+				<div class="col">
+				<div id="map"></div>
+			</div>
 		</div>
 
 
@@ -137,7 +110,7 @@
 		<input type="submit" value="Search">
 	</form>
 
-	<div id="map"></div>
+
 
 
 	<script type="text/javascript">
