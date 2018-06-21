@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<<<<<<< HEAD
-<!DOCTYPE>
-=======
-<!DOCTYPE html>
->>>>>>> 6a1fb269949f6f5221f4124452f08af822f5d96a
+
 <html>
 <head>
 
@@ -23,7 +19,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <!-- The is for auto complete -->
 
-<<<<<<< HEAD
+
 
 <script>
 	var map, infoWindow;
@@ -94,7 +90,7 @@
 				return false;
 			};
 			ourRequest.send();
-=======
+
 <link rel="stylesheet" type="text/css" href="css/main.css"></link>
 <script type="text/javascript">
 	function initAutocomplete() {
@@ -112,8 +108,6 @@
 
 	}
 </script>
-
-
 
 </head>
 <body class="text-center">
@@ -166,7 +160,6 @@
 
 			ourRequest.send();
 
->>>>>>> 6a1fb269949f6f5221f4124452f08af822f5d96a
 		}
 	</script>
 </body>

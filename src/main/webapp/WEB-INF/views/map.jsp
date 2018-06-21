@@ -22,7 +22,7 @@
     	    map: map,
     	    title: 'Hello World!'
     	  }); initAutocomplete();
-    }
+    
 	function initAutocomplete() {
 		autocomplete = new google.maps.places.Autocomplete((document
 				.getElementById("address")), {
