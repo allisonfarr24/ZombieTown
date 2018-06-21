@@ -14,6 +14,10 @@
 
     	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
     	
+<<<<<<< HEAD
+    	    console.log(${locations});
+    	    var myLatLng = JSON.parse(${locations});
+=======
     	    var myLatLng = [
       ['Bondi Beach', -33.890542, 151.274856],
       ['Coogee Beach', -33.923036, 151.259052],
@@ -21,6 +25,7 @@
       ['Manly Beach', -33.80010128657071, 151.28747820854187],
       ['Maroubra Beach', -33.950198, 151.259302]
     ];
+>>>>>>> 7f7495ab83d949049419dfba157e735c4c46a5c9
     	
 
     	  var map = new google.maps.Map(document.getElementById('map'), {
