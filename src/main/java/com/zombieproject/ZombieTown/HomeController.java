@@ -59,6 +59,9 @@ public class HomeController {
 		
 		int percent = getPercent(count);
 		mv.addObject("percent", percent);
+		
+		mv.addObject("lat", lat);
+		mv.addObject("lng", lng);
 
 		return mv;
 	}

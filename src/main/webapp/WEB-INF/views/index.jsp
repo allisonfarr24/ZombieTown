@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
+
+
+<!DOCTYPE html>
+
+
 <html>
 <head>
 
@@ -65,11 +70,19 @@
 </style>
 </head>
 <body>
-	<form action="location">
-		<input type="text" id="address"> <input
-			type="hidden" id="lat" name="lat"></input> <input type="hidden"
-			id="lng" name="lng"></input> <input type="submit" value="Search">
-	</form>
+		<div class="container">
+			<h1>
+				<em>Will You Survive?!</em>
+			</h1>
+		</div>
+	<div class="container mt-5">
+		<form class="form-group mt-5" action="location">
+			<input class="form-control form-control-lg" type="text" id="address"
+				oninput="getCoordinates();"> <input type="hidden" id="lat"
+				name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
+			<input class="btn" type="submit" value="Search">
+		</form>
+	</div>
 
 	<div id="map"></div>
 
@@ -109,9 +122,10 @@
 	}
 </script>
 
+
 </head>
 <body class="text-center">
-	
+
 	<div class="centered">
 
 		<div class="container">
