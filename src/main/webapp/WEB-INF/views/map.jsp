@@ -9,9 +9,9 @@
 <script>
 	var map, infoWindow;
     function initMap() {
-<<<<<<< HEAD
+
     	 var myLatLng = {lat:${lat}, lng:${lng}}; 	
-=======
+
     	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
     	
     	    var myLatLng = [
@@ -21,7 +21,6 @@
       ['Manly Beach', -33.80010128657071, 151.28747820854187],
       ['Maroubra Beach', -33.950198, 151.259302]
     ];
->>>>>>> 43d38e675da3edb1ce9b64a634b4f84157afd2a1
     	
 
     	  var map = new google.maps.Map(document.getElementById('map'), {
@@ -50,7 +49,7 @@
     	      })(marker, i));
     	    }
     	  initAutocomplete();
-    }
+    
     
 	function initAutocomplete() {
 		autocomplete = new google.maps.places.Autocomplete((document
