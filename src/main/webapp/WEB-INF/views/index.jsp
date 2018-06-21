@@ -131,10 +131,7 @@
 		</div>
 
 	<!-- this the key for auto complete -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
-&libraries=places&callback=initAutocomplete"
-		async defer></script>
+
 	<!-- this is to get the getCoordinates to send data to our location -->
 	<script type="text/javascript">
 		function getCoordinates() {
