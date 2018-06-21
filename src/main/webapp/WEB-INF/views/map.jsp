@@ -11,8 +11,8 @@
     function initMap() {
     	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
     	
-    	    var myLatLng = Json.parse(${locations});
-    	    console.log(myLatLng);
+    	    console.log(${locations});
+    	    var myLatLng = JSON.parse(${locations});
     	
 
     	  var map = new google.maps.Map(document.getElementById('map'), {
