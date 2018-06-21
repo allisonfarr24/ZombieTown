@@ -41,15 +41,27 @@ public class HomeController {
 		// This array list holds count for each place
 		ArrayList<Integer> count = new ArrayList<>();
 		// Adds results from the google api
-		RestTemplate restTemplate = new RestTemplate();
 		for (int i = 0; i < arr.length; i++) {
+			RestTemplate restTemplate = new RestTemplate();
 			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]), JsonResponse.class);
 			int num = response.getResults().length;
+			String pageToken = response.getNextPageToken();
+			System.out.println(pageToken);
+			System.out.println(num);
+		
+		
+			if (pageToken != "") {
+			RestTemplate restTemplate2 = new RestTemplate();
+			JsonResponse response2 = restTemplate2.getForObject("https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=" + pageToken +
+					"&key=" + key, JsonResponse.class);
+			num += response2.getResults().length;
 			
-			while (!response.getNextPageToken().isEmpty()) {
-				response = restTemplate.getForObject(getNextPageUrl(response.getNextPageToken()), JsonResponse.class);
-				num += response.getResults().length;				
 			}
+			
+//			while (!response.getNextPageToken().isEmpty()) {
+//				response = restTemplate.getForObject(getNextPageUrl(response.getNextPageToken()), JsonResponse.class);
+//				num += response.getResults().length;				
+//			}
 			
 			count.add(num);
 		}
@@ -79,8 +91,8 @@ public class HomeController {
 	}
 	
 	// Helper method to build the next page token url request call
-	public String getNextPageUrl(String pageToken) {
-		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=" + pageToken +
+	public String getNextPageUrl(JsonResponse response3) {
+		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=" + response3.getNextPageToken() +
 				"&key=" + key;
 	}
 
