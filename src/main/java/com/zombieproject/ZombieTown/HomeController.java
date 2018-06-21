@@ -1,6 +1,7 @@
 package com.zombieproject.ZombieTown;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zombieproject.ZombieTown.model.JsonResponse;
+import com.zombieproject.ZombieTown.model.Results;
 import com.zombieproject.ZombieTown.model.prison.Prison;
 import com.zombieproject.ZombieTown.repository.PrisonRepository;
 
@@ -20,6 +22,7 @@ public class HomeController {
 
 	@Value("${zombietown.apikey}")
 	private String key;
+	
 
 	@Autowired
 	PrisonRepository p;
@@ -34,6 +37,10 @@ public class HomeController {
 	@RequestMapping("/location")
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
 		ModelAndView mv = new ModelAndView("map");
+		
+		ArrayList<String[]> locations = new ArrayList<String[]>();
+		String[] location = new String[3];
+		
 		mv.addObject("lat", lat);
 		mv.addObject("lng", lng);
 		// Items in this array are place that we are searching for
@@ -45,6 +52,17 @@ public class HomeController {
 			RestTemplate restTemplate = new RestTemplate();
 			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]), JsonResponse.class);
 			int num = response.getResults().length;
+			
+			for (Results result : response.getResults()) {
+				location[0] = result.getName();
+				location[1] = Double.toString(result.getGeometry().getLocation().getLat());
+				location[2] = Double.toString(result.getGeometry().getLocation().getLng());
+				
+				System.out.println(Arrays.toString(location));
+				
+				locations.add(location);
+			}
+			
 			String pageToken = response.getNextPageToken();
 			System.out.println(pageToken);
 			System.out.println(num);
@@ -65,9 +83,8 @@ public class HomeController {
 			
 			count.add(num);
 		}
-		String test = String.format("Latitude: %s  Longitude: %s ", lat, lng);
-		test += String.format("<br><a href=\"http://www.google.com/maps/place/%s,%s\">CHECK THIS LOCATION</a>", lat, lng);
-		mv.addObject("tester", test);
+
+		mv.addObject("locations", locations);
 		
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
