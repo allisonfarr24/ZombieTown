@@ -55,12 +55,15 @@ public class HomeController {
 			int num = response.getResults().length;
 			
 			for (Results result : response.getResults()) {
-				String Gname = result.getName();
-				String Glat = Double.toString(result.getGeometry().getLocation().getLat());
-				String Glng = Double.toString(result.getGeometry().getLocation().getLng());
+				String gName = result.getName();
+				double gLat = result.getGeometry().getLocation().getLat();
+				double gLng = result.getGeometry().getLocation().getLng();
 				
+				GoogleMarks gMarks = new GoogleMarks(gName, gLat, gLng);
+				
+				System.out.println(gMarks);
 
-				locations.add(new GoogleMarks(Gname, Glat, Glng));
+				locations.add(gMarks);
 			}
 			
 			String pageToken = response.getNextPageToken();
@@ -84,9 +87,9 @@ public class HomeController {
 			count.add(num);
 		}
 
-		
+		JSONArray jsonArray = new JSONArray(locations);
 //		String json = new Gson().toJson(locations);
-		mv.addObject("locations", locations);
+		mv.addObject("locations", jsonArray);
 		
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
