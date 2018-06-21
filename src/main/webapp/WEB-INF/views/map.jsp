@@ -9,7 +9,7 @@
 <script>
 	var map, infoWindow;
     function initMap() {
-    	 var myLatLng = {lat:${lat}, lng:${lng}}; 	
+    	 var myLatLng = {lat:${lat} lng:${lng}}; 	
     	
 
     	  var map = new google.maps.Map(document.getElementById('map'), {
@@ -27,7 +27,7 @@
     	    map: map,
     	    title: 'Hello World!'
     	  }); initAutocomplete();
-    }
+    
 	function initAutocomplete() {
 		autocomplete = new google.maps.places.Autocomplete((document
 				.getElementById("address")), {
