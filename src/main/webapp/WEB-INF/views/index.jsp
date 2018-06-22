@@ -22,18 +22,21 @@
 
 <!-- The is for auto complete -->
 <script>
-/* Completes the autocomplete object form google maps 
- and the parameters are the text input (address) and geocoding*/ 
+	/* Completes the autocomplete object form google maps 
+	 and the parameters are the text input (address) and geocoding*/
 	function initAutocomplete() {
-		var autocomplete = new google.maps.places.Autocomplete(
-				(document.getElementById("address")), 
-				{types : [ 'geocode' ]}); 
+		autocomplete = new google.maps.places.Autocomplete((document
+				.getElementById("address")), {
+			types : [ 'geocode' ]
+		});
+		
 		/* adding an event listener when the user types something we 
 		run the fill in address funciton */
 		autocomplete.addListener('place_changed', fillInAddress);
 	}
 	function fillInAddress() {
 		var place = autocomplete.getPlace();
+		console.log(place);
 		getCoordinates();
 	}
 </script>
@@ -47,21 +50,21 @@
 
 </head>
 <body>
-<div class="centered">
-	<div class="container">
-		<h1>
-			<em>Will You Survive?!</em>
-		</h1>
+	<div class="centered">
+		<div class="container">
+			<h1>
+				<em>Will You Survive?!</em>
+			</h1>
+		</div>
+		<div class="container mt-5">
+			<form class="form-group mt-5" action="location">
+				<input class="form-control form-control-lg" type="text" id="address"
+					oninput="getCoordinates();"> <input type="hidden" id="lat"
+					name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
+				<input class="btn" type="submit" value="Search">
+			</form>
+		</div>
 	</div>
-	<div class="container mt-5">
-		<form class="form-group mt-5" action="location">
-			<input class="form-control form-control-lg" type="text" id="address"
-				oninput="getCoordinates();"> <input type="hidden" id="lat"
-				name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
-			<input class="btn" type="submit" value="Search">
-		</form>
-	</div>
-</div>
 
 
 
@@ -77,6 +80,7 @@
 	<script type="text/javascript">
 		function getCoordinates() {
 			var btn = document.getElementById("address").value;
+			console.log(btn);
 			var ourRequest = new XMLHttpRequest();
 			// this will open the connection and allow us to get data
 			// first param is what we want to do "GET", second param is the json url
@@ -98,7 +102,6 @@
 
 			ourRequest.send();
 		}
-		
 	</script>
 </body>
 
