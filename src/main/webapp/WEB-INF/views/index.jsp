@@ -19,25 +19,26 @@
 	crossorigin="anonymous">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
 <!-- The is for auto complete -->
-
-
-
 <script>
+/* Completes the autocomplete object form google maps 
+ and the parameters are the text input (address) and geocoding*/ 
 	function initAutocomplete() {
-		autocomplete = new google.maps.places.Autocomplete((document
-				.getElementById("address")), {
-			types : [ 'geocode' ]
-		}); 
+		var autocomplete = new google.maps.places.Autocomplete(
+				(document.getElementById("address")), 
+				{types : [ 'geocode' ]}); 
+		/* adding an event listener when the user types something we 
+		run the fill in address funciton */
 		autocomplete.addListener('place_changed', fillInAddress);
 	}
 	function fillInAddress() {
 		var place = autocomplete.getPlace();
-		console.log(place);
-		getCoordinates(place);
+		getCoordinates();
 	}
 </script>
 
+<!-- API call for Google Maps Javascript API -->
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6Ye_VKh4Q8ewJl2p7mhvUZafcMN5aWZE
 &libraries=places&callback=initAutocomplete"
@@ -76,7 +77,6 @@
 	<script type="text/javascript">
 		function getCoordinates() {
 			var btn = document.getElementById("address").value;
-
 			var ourRequest = new XMLHttpRequest();
 			// this will open the connection and allow us to get data
 			// first param is what we want to do "GET", second param is the json url
