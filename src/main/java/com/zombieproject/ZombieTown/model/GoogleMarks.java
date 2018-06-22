@@ -42,7 +42,7 @@ public class GoogleMarks {
 
 	@Override
 	public String toString() {
-		return "GoogleMarks [name=" + name + ", lat=" + lat + ", lng=" + lng + "]";
+		return "[" + name + ", " + lat + ", " + lng + "]";
 	}
 	
 	
