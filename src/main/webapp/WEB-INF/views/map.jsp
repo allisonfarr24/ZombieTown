@@ -8,19 +8,40 @@
 <script>
 var map, infoWindow;
 function initMap() {
-	 var myLatLng = {lat: ${lat}, lng: ${lng}};	
-	
 
+	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
+	var myLatLng =  ${locations};
+	
+	[
+		<c:forEach items="locations" var="location">
+		[ ${location[0]},  yy ],
+		
+		</c:forEach>
+	]
+	
+	
 	  var map = new google.maps.Map(document.getElementById('map'), {
 	    zoom: 15,
-	    center: myLatLng
+	    center: myLatLng1
 	  });
-
-	  var marker = new google.maps.Marker({
-	    position: myLatLng,
-	    map: map,
-	    title: 'Hello World!'
-	  }); initAutocomplete();
+	  
+		
+	  
+	  
+	    var infowindow = new google.maps.InfoWindow();
+	    var marker, i;
+	    for (i = 0; i < myLatLng.length; i++) {  
+	      marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(myLatLng[i][1], myLatLng[i][2]),
+	        map: map
+	      });
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent(myLatLng[0]);
+	          infowindow.open(map, marker);
+	        }
+	      })(marker, i));
+	    } initAutocomplete();
 }
     
 	function initAutocomplete() {
@@ -52,7 +73,7 @@ function initMap() {
 <body>
 	<div class="container">
 		<div class="row">
-			
+
 			<div class="col">
 				<div class="container centered">
 					<div class="container">
@@ -95,7 +116,7 @@ function initMap() {
 					</div>
 				</div>
 			</div>
-				<div class="col">
+			<div class="col">
 				<div id="map"></div>
 			</div>
 		</div>
