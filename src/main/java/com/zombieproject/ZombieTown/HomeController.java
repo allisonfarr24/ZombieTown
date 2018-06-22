@@ -54,14 +54,14 @@ public class HomeController {
 			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]), JsonResponse.class);
 			int num = response.getResults().length;
 			
-			for (Results result : response.getResults()) {
-				String Gname = result.getName();
-				String Glat = Double.toString(result.getGeometry().getLocation().getLat());
-				String Glng = Double.toString(result.getGeometry().getLocation().getLng());
-				
-
-				locations.add(new GoogleMarks(Gname, Glat, Glng));
-			}
+//			for (Results result : response.getResults()) {
+//				String Gname = result.getName();
+//				String Glat = Double.toString(result.getGeometry().getLocation().getLat());
+//				String Glng = Double.toString(result.getGeometry().getLocation().getLng());
+//				
+//
+//				locations.add(new GoogleMarks(Gname, Glat, Glng));
+//			}
 			
 			String pageToken = response.getNextPageToken();
 			System.out.println(pageToken);

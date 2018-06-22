@@ -61,7 +61,7 @@
 
 
 </head>
-<body>
+<body class="text-center">
 <div class="centered">
 		<div class="container">
 			<h1>
@@ -107,7 +107,7 @@
 		var place = autocomplete.getPlace();
 	}
 </script>
-</head>
+<!-- </head>
 <body class="text-center">
 	<div class="centered">
 		<div class="container">
@@ -123,7 +123,7 @@
 				<input class="btn" type="submit" value="Search">
 			</form>
 		</div>
-	</div>
+	</div> -->
 	<!-- this the key for auto complete -->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88
