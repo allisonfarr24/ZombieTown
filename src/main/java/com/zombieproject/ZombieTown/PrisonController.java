@@ -52,7 +52,7 @@ public class PrisonController {
 		GoogleMarks[] goMar = {g1, g2, g3, g4, g5};
 		
 		mv.addObject("locations", Arrays.asList(goMar));
-		mv.addObject("lat", 33.8);
+		mv.addObject("lat", -33.8);
 		mv.addObject("lng", 151.15);
 		
 		
