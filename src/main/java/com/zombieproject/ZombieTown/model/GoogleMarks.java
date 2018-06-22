@@ -3,13 +3,13 @@ package com.zombieproject.ZombieTown.model;
 public class GoogleMarks {
 	
 	private String name;
-	private String lat;
-	private String lng;
+	private double lat;
+	private double lng;
 	
 	public GoogleMarks() {
 	}
 
-	public GoogleMarks(String name, String lat, String lng) {
+	public GoogleMarks(String name, double lat, double lng) {
 		super();
 		this.name = name;
 		this.lat = lat;
@@ -24,19 +24,19 @@ public class GoogleMarks {
 		this.name = name;
 	}
 
-	public String getLat() {
+	public double getLat() {
 		return lat;
 	}
 
-	public void setLat(String lat) {
+	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
-	public String getLng() {
+	public double getLng() {
 		return lng;
 	}
 
-	public void setLng(String lng) {
+	public void setLng(double lng) {
 		this.lng = lng;
 	}
 
