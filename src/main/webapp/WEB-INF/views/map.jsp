@@ -12,12 +12,7 @@ function initMap() {
 	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
 	var myLatLng =  ${locations};
 	
-	[
-		<c:forEach items="locations" var="location">
-		[ ${location[0]},  yy ],
-		
-		</c:forEach>
-	]
+
 	
 	
 	  var map = new google.maps.Map(document.getElementById('map'), {
@@ -80,21 +75,22 @@ function initMap() {
 						<h1>Here is the score break-down:</h1>
 						<h1>${percent }%</h1>
 						<h2>${tester}</h2>
-
+						<br>
+						<h2>Shelter/Resources</h2>
 					</div>
 					<div class="container">
 						<table class="table table-dark table-hover">
 							<thead align="center">
+							<tr>
+			
+							</tr>
 								<tr>
 									<th align="center">Type of establishment</th>
-									<th align="center">Number within a 5 mile radius</th>
+									<th align="center">Number within specified radius</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>Hospital</td>
-									<td>${place[0] }</td>
-								</tr>
 								<tr>
 									<td>Gas Stations</td>
 									<td>${place[1] }</td>
@@ -114,6 +110,47 @@ function initMap() {
 							</tbody>
 						</table>
 					</div>
+					<br><br>
+					
+					<h2>Danger Zones</h2>
+					
+					<a href="viewdetails"><button type="button">View Details</button></a>
+					<div class="container">
+						<table class="table table-dark table-hover">
+							<thead align="center">
+							<tr>
+							
+							</tr>
+							
+								<tr>
+									<th align="center">Type of establishment</th>
+									<th align="center">Number within specified radius</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+								<tr>
+									<td>Hospitals</td>
+									<td>${place[0] }</td>
+								</tr>
+								<tr>
+									<td>Casinos</td>
+									<td>${place[5] }</td>
+								</tr>
+								<tr>
+									<td>Stadiums</td>
+									<td>${place[6] }</td>
+								</tr>
+								<tr>
+									<td>Shopping Malls</td>
+									<td>${place[7] }</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					
+					
 				</div>
 			</div>
 			<div class="col">
