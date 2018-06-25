@@ -76,8 +76,9 @@ function initMap() {
 						<h1>${percent }%</h1>
 						<h2>${tester}</h2>
 						<br>
-						<h2>Shelter/Resources</h2>
 					</div>
+						<h2>Shelter/Resources</h2>
+						<a href="/viewdetailsgood">View Details</a>
 					<div class="container">
 						<table class="table table-dark table-hover">
 							<thead align="center">
@@ -113,8 +114,7 @@ function initMap() {
 					<br><br>
 					
 					<h2>Danger Zones</h2>
-					
-					<a href="viewdetails"><button type="button">View Details</button></a>
+					<a href="/viewdetailsbad">View Details</a>
 					<div class="container">
 						<table class="table table-dark table-hover">
 							<thead align="center">

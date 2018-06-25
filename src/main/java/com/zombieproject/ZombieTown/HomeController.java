@@ -162,7 +162,25 @@ public class HomeController {
 		return (int) percent;
 
 	}
+	
+	@RequestMapping("/viewdetailsgood")
+	public ModelAndView details1() {
+		
+		return new ModelAndView("viewdetailsgood");
+	}
+	
+	
+	@RequestMapping("/viewdetailsbad")
+	public ModelAndView details2() {
+		
+		return new ModelAndView("viewdetailsbad");
+	}
+	
 }
+
+
+
+
 
 // @RequestMapping("/viewdetails")
 // public ModelAndView detials(@RequestParam("lat") double lat,
