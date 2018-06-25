@@ -18,6 +18,8 @@ import com.zombieproject.ZombieTown.model.JsonResponse;
 import com.zombieproject.ZombieTown.model.Results;
 import com.zombieproject.ZombieTown.model.prison.Prison;
 import com.zombieproject.ZombieTown.repository.PrisonRepository;
+import com.zombieproject.ZombieTown.userdata.UserData;
+import com.zombieproject.ZombieTown.userdata.UserDataRepo;
 
 @Controller
 public class HomeController {
@@ -27,6 +29,9 @@ public class HomeController {
 
 	@Autowired
 	PrisonRepository p;
+	
+	@Autowired
+	UserDataRepo u;
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -38,13 +43,17 @@ public class HomeController {
 	@RequestMapping("/location")
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
 		ModelAndView mv = new ModelAndView("map");
+		System.out.println(u.count());
+		if (u.count() > 0) {
+			u.deleteAll();
+		}
 
 		ArrayList<GoogleMarks> locations = new ArrayList<GoogleMarks>();
 
 		mv.addObject("lat", lat);
 		mv.addObject("lng", lng);
 		// Items in this array are place that we are searching for
-		String[] arr = { "hospital", "gas_station", "pharmacy", "police" };
+		String[] arr = { "hospital", "gas_station", "pharmacy", "police", "casino", "shopping_mall", "stadium" };
 		// This array list holds count for each place
 		ArrayList<Integer> count = new ArrayList<>();
 		// Adds results from the google api
@@ -60,40 +69,25 @@ public class HomeController {
 				String gName = result.getName();
 				double gLat = result.getGeometry().getLocation().getLat();
 				double gLng = result.getGeometry().getLocation().getLng();
+				double gDistance = prisonDistance(Double.toString(gLat),
+						Double.toString(gLng), lat, lng);
+				gDistance *= 0.621371;
+				
+				UserData userData = new UserData(arr[i], gName, Double.toString(gLat),
+						Double.toString(gLng), Double.toString(gDistance));
+				u.save(userData);
+				
+				GoogleMarks gMar = new GoogleMarks(gName, gLat, gLng);
+				locations.add(gMar);
 
-				GoogleMarks gMarks = new GoogleMarks(gName, gLat, gLng);
-
-				System.out.println(gMarks);
-
-				locations.add(gMarks);
+				System.out.println(userData);
 			}
 
-			String pageToken = response.getNextPageToken();
-			System.out.println(pageToken);
-			System.out.println(num);
-
-			if (pageToken != "") {
-				RestTemplate restTemplate2 = new RestTemplate();
-				JsonResponse response2 = restTemplate2
-						.getForObject("https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken="
-								+ pageToken + "&key=" + key, JsonResponse.class);
-				num += response2.getResults().length;
-
-			}
-
-			// while (!response.getNextPageToken().isEmpty()) {
-			// response =
-			// restTemplate.getForObject(getNextPageUrl(response.getNextPageToken()),
-			// JsonResponse.class);
-			// num += response.getResults().length;
-			// }
-
+	
 			count.add(num);
 		}
-
-		JSONArray jsonArray = new JSONArray(locations);
-		// String json = new Gson().toJson(locations);
-		mv.addObject("locations", jsonArray);
+		
+		mv.addObject("locations", locations);
 
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
@@ -144,6 +138,10 @@ public class HomeController {
 				double distance = prisonDistance(prison.getLatitude(), prison.getLongitude(), lat, lng);
 				// if the distance is less than 8 kilometers
 				if (distance < 8.0) {
+					UserData userData = new UserData("Prison", prison.getCode(), prison.getLatitude(),
+							prison.getLongitude(), Double.toString(distance * 0.621371));
+					u.save(userData);
+					
 					counter++;
 				}
 
@@ -167,7 +165,7 @@ public class HomeController {
 		return (int) percent;
 
 	}
-
+	
 	@RequestMapping("/viewdetails")
 	public ModelAndView detials(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
 		ModelAndView mv = new ModelAndView("viewdetails");
