@@ -29,7 +29,7 @@ public class HomeController {
 
 	@Autowired
 	PrisonRepository p;
-	
+
 	@Autowired
 	UserDataRepo u;
 
@@ -41,7 +41,8 @@ public class HomeController {
 	// Button on the index page
 
 	@RequestMapping("/location")
-	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
+	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng,
+			@RequestParam("radius") double radius) {
 		ModelAndView mv = new ModelAndView("map");
 		System.out.println(u.count());
 		if (u.count() > 0) {
@@ -57,36 +58,32 @@ public class HomeController {
 		// This array list holds count for each place
 		ArrayList<Integer> count = new ArrayList<>();
 		// Adds results from the google api
-		
-		
+
 		for (int i = 0; i < arr.length; i++) {
 			RestTemplate restTemplate = new RestTemplate();
-			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]), JsonResponse.class);
+			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i], radius), JsonResponse.class);
 			int num = response.getResults().length;
-			
-		
+
 			for (Results result : response.getResults()) {
 				String gName = result.getName();
 				double gLat = result.getGeometry().getLocation().getLat();
 				double gLng = result.getGeometry().getLocation().getLng();
-				double gDistance = prisonDistance(Double.toString(gLat),
-						Double.toString(gLng), lat, lng);
+				double gDistance = prisonDistance(Double.toString(gLat), Double.toString(gLng), lat, lng);
 				gDistance *= 0.621371;
-				
-				UserData userData = new UserData(arr[i], gName, Double.toString(gLat),
-						Double.toString(gLng), Double.toString(gDistance));
+
+				UserData userData = new UserData(arr[i], gName, Double.toString(gLat), Double.toString(gLng),
+						Double.toString(gDistance));
 				u.save(userData);
-				
+
 				GoogleMarks gMar = new GoogleMarks(gName, gLat, gLng);
 				locations.add(gMar);
 
 				System.out.println(userData);
 			}
 
-	
 			count.add(num);
 		}
-		
+
 		mv.addObject("locations", locations);
 
 		// Adds results from the prison data base
@@ -105,9 +102,9 @@ public class HomeController {
 	}
 
 	// Helps us to keep from adding separate search methods
-	private String getTypeUrl(double lat, double lng, String type) {
-		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng
-				+ "&radius=8000&type=" + type + "&key=" + key;
+	private String getTypeUrl(double lat, double lng, String type, double radius) {
+		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius="
+				+ radius + "&type=" + type + "&key=" + key;
 	}
 
 	// Helper method to build the next page token url request call
@@ -141,7 +138,7 @@ public class HomeController {
 					UserData userData = new UserData("Prison", prison.getCode(), prison.getLatitude(),
 							prison.getLongitude(), Double.toString(distance * 0.621371));
 					u.save(userData);
-					
+
 					counter++;
 				}
 
@@ -165,27 +162,30 @@ public class HomeController {
 		return (int) percent;
 
 	}
-	
-	@RequestMapping("/viewdetails")
-	public ModelAndView detials(@RequestParam("lat") double lat, @RequestParam("lng") double lng) {
-		ModelAndView mv = new ModelAndView("viewdetails");
-
-		String[] arr = { "hospital", "gas_station", "pharmacy", "police" };
-
-	
-		mv.addObject("lat", lat);
-		mv.addObject("lng", lng);
-		for (int i = 0; i < arr.length; i++) {
-			RestTemplate restTemplate = new RestTemplate();
-			Results result = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]), Results.class);
-			String[] details = result.getTypes();
-			
-			System.out.println(details);
-			
-			mv.addObject("details", details);
-
-		}
-		return mv;
-	}
-
 }
+
+// @RequestMapping("/viewdetails")
+// public ModelAndView detials(@RequestParam("lat") double lat,
+// @RequestParam("lng") double lng) {
+// ModelAndView mv = new ModelAndView("viewdetails");
+//
+// String[] arr = { "hospital", "gas_station", "pharmacy", "police" };
+//
+//
+// mv.addObject("lat", lat);
+// mv.addObject("lng", lng);
+// for (int i = 0; i < arr.length; i++) {
+// RestTemplate restTemplate = new RestTemplate();
+// Results result = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]),
+// Results.class);
+// String[] details = result.getTypes();
+//
+// System.out.println(details);
+//
+// mv.addObject("details", details);
+//
+// }
+// return mv;
+// }
+//
+// }
