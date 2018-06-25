@@ -24,8 +24,9 @@
 
 	<h3>Stadiums</h3>
 	<br>
-	<p>Stadiums may be perhaps the worst choice of places to go in terms of seeking
-		shelter. nooks/crannies/hiding spots....</p>
+	<p>Stadiums may be perhaps the worst choice of places to go in
+		terms of seeking shelter. They contain a lot of smaller places inside
+		one large establishment - perfect for catching you off guard.</p>
 
 	<h3>Shopping Malls</h3>
 	<br>
