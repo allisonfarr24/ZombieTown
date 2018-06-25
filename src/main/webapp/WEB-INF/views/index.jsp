@@ -65,7 +65,7 @@
 					<option value=1609>Code yellow (minor infestation)</option>
 					<option value=4827>Code orange (moderate infestation)</option>
 					<option value=8045>CODE RED (Welcome to the danger zone!)</option>
-					</select>
+					</select> <br>
 				<input class="btn" type="submit" value="Search">
 			</form>
 		</div>
