@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -19,14 +20,15 @@ import com.zombieproject.ZombieTown.repository.PrisonRepository;
 @Controller
 public class PrisonController {
 
+	@Value("${zombietown.apikey}")
+	private String key;
+	
 	@Autowired
 	PrisonRepository p;
 
 	// This method only needs to be run once to populate database in MySQL
 	@Autowired
 	HomeController h;
-
-
 
 
 //	 @RequestMapping("/prisontest")
@@ -112,7 +114,7 @@ public class PrisonController {
 
 	private String getTypeUrl(double lat, double lng, String type) {
 		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng
-				+ "&radius=8000&type=" + type + "&key=" + h.key;
+				+ "&radius=8000&type=" + type + "&key=" + key;
 	}
 	
 }
