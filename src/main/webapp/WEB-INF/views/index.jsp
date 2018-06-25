@@ -61,6 +61,11 @@
 				<input class="form-control form-control-lg" type="text" id="address"
 					oninput="getCoordinates();"> <input type="hidden" id="lat"
 					name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
+					<select name="radius">
+					<option value=1609>Code yellow (minor infestation)</option>
+					<option value=4827>Code orange (moderate infestation)</option>
+					<option value=8045>CODE RED (Welcome to the danger zone!)</option>
+					</select>
 				<input class="btn" type="submit" value="Search">
 			</form>
 		</div>
