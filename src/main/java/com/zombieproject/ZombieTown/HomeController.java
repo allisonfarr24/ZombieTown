@@ -26,12 +26,18 @@ public class HomeController {
 
 	@Value("${zombietown.apikey}")
 	private String key;
+	
+	@Value("${zombietown.apikey}")
+	private String key2;
 
 	@Autowired
 	PrisonRepository p;
 
 	@Autowired
 	UserDataRepo u;
+
+	String[] goodStuff = { "gas_station", "pharmacy", "police" };
+	String[] badStuff = { "hospital", "casino", "shopping_mall", "stadium" };
 
 	@RequestMapping("/")
 	public ModelAndView home() {
@@ -45,9 +51,8 @@ public class HomeController {
 			@RequestParam("radius") double radius) {
 		ModelAndView mv = new ModelAndView("map");
 		System.out.println(u.count());
-		if (u.count() > 0) {
-			u.deleteAll();
-		}
+					u.deleteAll();
+		
 
 		ArrayList<GoogleMarks> locations = new ArrayList<GoogleMarks>();
 
@@ -63,6 +68,7 @@ public class HomeController {
 			RestTemplate restTemplate = new RestTemplate();
 			JsonResponse response = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i], radius), JsonResponse.class);
 			int num = response.getResults().length;
+			System.out.println(num);
 
 			for (Results result : response.getResults()) {
 				String gName = result.getName();
@@ -101,10 +107,50 @@ public class HomeController {
 		return mv;
 	}
 
+	@RequestMapping("/viewmap")
+	public ModelAndView viewmap1() {
+		double lat = 42.03;
+		double lng = -83.64;
+		int radius = 1609;
+		ModelAndView mv = new ModelAndView("map");
+		
+		ArrayList<GoogleMarks> locations = new ArrayList<>();
+
+		List<UserData> datas = u.findAll();
+		for (UserData data : datas) {
+			System.out.println(data);
+			locations.add(dataToMarks(data));
+		}
+		
+		mv.addObject("locations", locations);
+		
+		
+		ArrayList<Integer> count = getCount();
+		count.add(4, prisonCount(lat, lng));
+		mv.addObject("place", count);
+
+		int percent = getPercent(count, radius);
+		mv.addObject("percent", percent);
+				
+		
+		mv.addObject("lat", lat);
+		mv.addObject("lng", lng);
+		return mv;
+	}
+	
+	public GoogleMarks dataToMarks(UserData userData) {
+		String gName = userData.getName();
+		double gLat = Double.parseDouble(userData.getLat());
+		double gLng = Double.parseDouble(userData.getLng());
+
+		return new GoogleMarks(gName, gLat, gLng);
+	}
+
+
 	// Helps us to keep from adding separate search methods
 	private String getTypeUrl(double lat, double lng, String type, double radius) {
 		return "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius="
-				+ radius + "&type=" + type + "&key=" + key;
+				+ radius + "&type=" + type + "&key=" + key2;
 	}
 
 	// Helper method to build the next page token url request call
@@ -149,22 +195,35 @@ public class HomeController {
 		return counter;
 	}
 
+	public ArrayList<Integer> getCount() {
+		ArrayList<Integer> count = new ArrayList<>();
+		count.add(u.findByType("hospital").size());
+		count.add(u.findByType("gas_station").size());
+		count.add(u.findByType("pharmacy").size());
+		count.add(u.findByType("police").size());
+		count.add(u.findByType("casino").size());
+		count.add(u.findByType("shopping_mall").size());
+		count.add(u.findByType("stadium").size());
+		return count;
+	}
+
 	public int getPercent(ArrayList<Integer> count, double radius) {
 		double percent = 0;
 		percent = (count.get(1) * 1.5);
 		percent += (count.get(2) * 2.2);
 		percent += (count.get(3) * 1.5);
 		percent += (count.get(4) * 2);
-		
+
 		percent = percent - ((count.get(0) * 0.04) * percent);
- 
+
 		percent = percent - ((count.get(5) * 0.02) * percent);
-		 
+
 		percent = percent - ((count.get(6) * 0.04) * percent);
-		 
-		percent = percent - ((count.get(7) * 0.02) * percent);;
-		 
-		if (radius == 4827 ) {
+
+		percent = percent - ((count.get(7) * 0.02) * percent);
+		;
+
+		if (radius == 4827) {
 			percent *= .7;
 		}
 		if (radius == 1609) {
@@ -180,25 +239,20 @@ public class HomeController {
 		return (int) percent;
 
 	}
-	
+
 	@RequestMapping("/viewdetailsgood")
 	public ModelAndView details1() {
-		
+
 		return new ModelAndView("viewdetailsgood");
 	}
-	
-	
+
 	@RequestMapping("/viewdetailsbad")
 	public ModelAndView details2() {
-		
+
 		return new ModelAndView("viewdetailsbad");
 	}
-	
+
 }
-
-
-
-
 
 // @RequestMapping("/viewdetails")
 // public ModelAndView detials(@RequestParam("lat") double lat,

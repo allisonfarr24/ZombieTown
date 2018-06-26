@@ -86,6 +86,15 @@ public class UserData {
 	public void setDistance(String distance) {
 		this.distance = distance;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "UserData [id=" + id + ", type=" + type + ", name=" + name + ", lat=" + lat + ", lng=" + lng
+				+ ", distance=" + distance + "]";
+	}
+	
 	
 	
 
