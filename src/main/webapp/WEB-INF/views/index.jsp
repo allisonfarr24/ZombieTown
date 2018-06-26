@@ -58,7 +58,7 @@
 		</div>
 		<div class="container mt-5">
 			<form class="form-group mt-5" action="location">
-				<input class="form-control form-control-lg" type="text" id="address"
+				<input required="required" class="form-control form-control-lg" type="text" id="address"
 					oninput="getCoordinates();"> <input type="hidden" id="lat"
 					name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
 					<select name="radius">

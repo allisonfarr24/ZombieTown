@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
 
 <script>
 var map, infoWindow;
@@ -32,7 +39,7 @@ function initMap() {
 	      });
 	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	        return function() {
-	          infowindow.setContent(myLatLng[0]);
+	          infowindow.setContent(myLatLng[i][0]);
 	          infowindow.open(map, marker);
 	        }
 	      })(marker, i));
@@ -60,8 +67,8 @@ function initMap() {
 <style>
 /* Set the size of the div element that contains the map */
 #map {
-	height: 400px; /* The height is 400 pixels */
-	width: 100%; /* The width is the width of the web page */
+	height: 600px; /* The height is 400 pixels */
+	width: 800px; /* The width is the width of the web page */
 }
 </style>
 </head>
@@ -78,7 +85,7 @@ function initMap() {
 						<br>
 					</div>
 						<h2>Shelter/Resources</h2>
-						<a href="/viewdetailsgood">View Details</a>
+						<a href="/viewdetailsgood"><button class="btn">View Details</button></a>
 					<div class="container">
 						<table class="table table-dark table-hover">
 							<thead align="center">
@@ -114,7 +121,7 @@ function initMap() {
 					<br><br>
 					
 					<h2>Danger Zones</h2>
-					<a href="/viewdetailsbad">View Details</a>
+					<a href="/viewdetailsbad"><button class="btn">View Details</button></a>
 					<div class="container">
 						<table class="table table-dark table-hover">
 							<thead align="center">
@@ -161,14 +168,7 @@ function initMap() {
 
 	</div>
 
-
-	<form action="location">
-		<input type="text" id="address"> <input type="hidden" id="lat"
-			name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
-		<input type="submit" value="Search">
-	</form>
-
-
+<br><a href="/"><button class="btn">Search a New Location</button></a>
 
 
 	<script type="text/javascript">

@@ -5,10 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+
 <title>Details Page</title>
 </head>
 <body>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 * {
     box-sizing: border-box;
@@ -27,43 +34,116 @@
     content: "";
     display: table;
     clear: both;
-}
-</style>
+} -->
+<!-- </style> -->
 </head>
 <body>
 
-  <h2>Danger Zone</h2>
-
+  <h1 align ="center">Danger Zone</h1>
+<div class="container">
 <div class="row">
   <div class="column">
-    <h2>Hospitals</h2>
+    <br><h2>Hospitals</h2>
     <p>Hospitals are certain to be over-populated by the infected, and
 		are therefore a very risky place to go when under attack. You may
 		think a hospital would be a good place to get medical supplies, but
 		the risks of becoming infected certainly outweigh the benefits.
 		Pharmacies or Private Practices would be a better choice because they
-		carry a lot of the same supplies with a much lower risk.</p>
+		carry a lot of the same supplies with a much lower risk.</p><br>
+		<table border="1">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Distance in miles</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="hospital" items="${hospital }">
+						<tr>
+							<td>${hospital.name }</td>
+							<td>${hospital.distance }</td>
+						</tr>
+
+					</c:forEach>
+				</tbody>
+			</table>
   </div>
   <div class="column">
-    <h2>Casinos</h2>
-    <p>Money will get you nowhere right now!</p>
+   <br> <h2>Casinos</h2>
+    <p>Money will get you nowhere right now!</p><br>
+    <table border="1">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Distance in miles</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="casino" items="${casino }">
+						<tr>
+							<td>${casino.name }</td>
+							<td>${casino.distance }</td>
+						</tr>
+
+					</c:forEach>
+				</tbody>
+			</table>
   </div>
-</div>
-<tr>
+
+
    <div class="column">
-    <h2>Stadiums</h2>
+    <br><h2>Stadiums</h2>
     <p>Stadiums may be perhaps the worst choice of places to go in
 		terms of seeking shelter. They contain a lot of smaller places inside
-		one large establishment - perfect for catching you off guard.</p>
+		one large establishment - perfect for catching you off guard.</p><br>
+		<table border="1">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Distance in miles</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="stadium" items="${stadium }">
+						<tr>
+							<td>${stadium.name }</td>
+							<td>${stadium.distance }</td>
+						</tr>
+
+					</c:forEach>
+				</tbody>
+			</table>
   </div>
-</div>
+
    <div class="column">
-    <h2>Shopping Malls</h2>
+    <br><h2>Shopping Malls</h2>
     <p>Think a shopping mall is a good place to take shelter? Well, so
 		is everyone else! So, you may want to think again. Malls will quickly
 		become populated with potentially infected people, and with so many
-		people in a confined area, you may not be as safe as you think.</p>
+		people in a confined area, you may not be as safe as you think.</p><br>
+		<table border="1">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Distance in miles</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="mall" items="${mall }">
+						<tr>
+							<td>${mall.name }</td>
+							<td>${mall.distance }</td>
+						</tr>
+
+					</c:forEach>
+				</tbody>
+			</table>
   </div>
+</div>
 </div>
 
 </body>
