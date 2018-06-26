@@ -1,15 +1,16 @@
 package com.zombieproject.ZombieTown;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.json.JSONArray;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +23,7 @@ import com.zombieproject.ZombieTown.userdata.UserData;
 import com.zombieproject.ZombieTown.userdata.UserDataRepo;
 
 @Controller
+@SessionAttributes({"lat", "lng", "radius"})
 public class HomeController {
 
 	@Value("${zombietown.apikey}")
@@ -48,13 +50,18 @@ public class HomeController {
 
 	@RequestMapping("/location")
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng,
-			@RequestParam("radius") double radius) {
+			@RequestParam("radius") double radius, HttpSession session) {
+		
+		session.setAttribute("lat", lat);
+		session.setAttribute("lng", lng);
+		session.setAttribute("radius", radius);
+		
 		ModelAndView mv = new ModelAndView("map");
 		System.out.println(u.count());
 					u.deleteAll();
 		
 
-		ArrayList<GoogleMarks> locations = new ArrayList<GoogleMarks>();
+		ArrayList<GoogleMarks> locations = new ArrayList<>();
 
 		mv.addObject("lat", lat);
 		mv.addObject("lng", lng);
@@ -81,37 +88,41 @@ public class HomeController {
 						Double.toString(gDistance));
 				u.save(userData);
 
-				GoogleMarks gMar = new GoogleMarks(gName, gLat, gLng);
-				locations.add(gMar);
-
-				System.out.println(userData);
 			}
 
 			count.add(num);
 		}
-
-		mv.addObject("locations", locations);
-
+		
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
 		int prison = prisonCount(lat, lng);
 		count.add(4, prison);
 		mv.addObject("place", count);
 
+		List<UserData> datas = u.findAll();
+		for (UserData data : datas) {
+			System.out.println(data);
+			locations.add(dataToMarks(data));
+		}
+		
+		mv.addObject("locations", locations);
+
 		int percent = getPercent(count, radius);
 		mv.addObject("percent", percent);
 
-		mv.addObject("lat", lat);
-		mv.addObject("lng", lng);
 
 		return mv;
 	}
 
 	@RequestMapping("/viewmap")
-	public ModelAndView viewmap1() {
-		double lat = 42.03;
-		double lng = -83.64;
-		int radius = 1609;
+	public ModelAndView viewmap1(HttpSession session) {
+
+		double lat = (double) session.getAttribute("lat");
+
+		double lng = (double) session.getAttribute("lng");
+		double radius = (double) session.getAttribute("radius");
+		
+		System.out.println(""+ lat + " " + lng + " " + radius);
 		ModelAndView mv = new ModelAndView("map");
 		
 		ArrayList<GoogleMarks> locations = new ArrayList<>();
