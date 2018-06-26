@@ -138,11 +138,11 @@ function initMap() {
 									<td>${place[5] }</td>
 								</tr>
 								<tr>
-									<td>Stadiums</td>
+									<td>Shopping Malls</td>
 									<td>${place[6] }</td>
 								</tr>
 								<tr>
-									<td>Shopping Malls</td>
+									<td>Stadiums</td>
 									<td>${place[7] }</td>
 								</tr>
 							</tbody>
