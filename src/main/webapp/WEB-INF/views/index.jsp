@@ -62,9 +62,9 @@
 					oninput="getCoordinates();"> <input type="hidden" id="lat"
 					name="lat"></input> <input type="hidden" id="lng" name="lng"></input>
 					<select name="radius">
-					<option value=1609>Code yellow (minor infestation)</option>
-					<option value=4827>Code orange (moderate infestation)</option>
-					<option value=8045>CODE RED (Welcome to the danger zone!)</option>
+					<option value=8045>Code yellow (5 miles to find safety)</option>
+					<option value=4827>Code orange (3 miles to find safety)</option>
+					<option value=1609>CODE RED (1 mile to find safety)</option>
 					</select> <br>
 				<input class="btn" type="submit" value="Search">
 			</form>

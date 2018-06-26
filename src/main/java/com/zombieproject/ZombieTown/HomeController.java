@@ -89,7 +89,7 @@ public class HomeController {
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
 		int prison = prisonCount(lat, lng);
-		count.add(prison);
+		count.add(4, prison);
 		mv.addObject("place", count);
 
 		int percent = getPercent(count, radius);
