@@ -92,7 +92,7 @@ public class HomeController {
 		count.add(4, prison);
 		mv.addObject("place", count);
 
-		int percent = getPercent(count);
+		int percent = getPercent(count, radius);
 		mv.addObject("percent", percent);
 
 		mv.addObject("lat", lat);
@@ -149,15 +149,33 @@ public class HomeController {
 		return counter;
 	}
 
-	public int getPercent(ArrayList<Integer> count) {
+	public int getPercent(ArrayList<Integer> count, double radius) {
 		double percent = 0;
-		percent -= count.get(0);
-		percent += count.get(1);
-		percent += count.get(2);
-		percent += count.get(3);
-		percent += count.get(4);
-
-		percent = (percent / 80) * 100;
+		percent = (count.get(1) * 1.5);
+		percent += (count.get(2) * 2.2);
+		percent += (count.get(3) * 1.5);
+		percent += (count.get(4) * 2);
+		
+		percent = percent - ((count.get(0) * 0.04) * percent);
+ 
+		percent = percent - ((count.get(5) * 0.02) * percent);
+		 
+		percent = percent - ((count.get(6) * 0.04) * percent);
+		 
+		percent = percent - ((count.get(7) * 0.02) * percent);;
+		 
+		if (radius == 4827 ) {
+			percent *= .7;
+		}
+		if (radius == 1609) {
+			percent *= .2;
+		}
+		if (radius == 8045) {
+			percent *= 2.5;
+		}
+		if (percent > 99) {
+			percent = 100;
+		}
 
 		return (int) percent;
 
