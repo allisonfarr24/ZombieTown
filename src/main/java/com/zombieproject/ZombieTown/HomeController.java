@@ -282,7 +282,7 @@ public class HomeController {
 		}
 		
 		if (percent > 99) {
-			percent = 100;
+			percent = 99;
 		}
 
 		return (int) percent;
