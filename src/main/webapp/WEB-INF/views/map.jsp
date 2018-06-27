@@ -398,8 +398,13 @@ function initMap() {
 <body>
 
 	<div class="container mt-3">
-		<h1 style="text-align: center">Here is the score break-down: ${percent }%</h1>
+		<h1 style="text-align: center">You have a ${percent }% change of survival!</h1>
 		<br>
+		<p>Your score is calculated using a formula we created
+		that takes into account your proximity to certain establishments.
+		Being near certain places may increase or decrease your odds of 
+		survival, depending on the type of establishment and how many are
+		within the specified radius</p>
 	</div>
 
 <div class="container mt-2">
