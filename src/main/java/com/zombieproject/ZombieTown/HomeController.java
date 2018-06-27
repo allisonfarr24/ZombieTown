@@ -98,7 +98,7 @@ public class HomeController {
 				gDistance *= 0.621371;
 
 				UserData userData = new UserData(arr[i], gName, Double.toString(gLat), Double.toString(gLng),
-						Double.toString(gDistance));
+						String.format("%.2f", gDistance));
 				u.save(userData);
 
 			}
@@ -208,7 +208,7 @@ public class HomeController {
 				// if the distance is less than 8 kilometers
 				if (distance < 8.0) {
 					UserData userData = new UserData("Prison", prison.getCode(), prison.getLatitude(),
-							prison.getLongitude(), Double.toString(distance * 0.621371));
+							prison.getLongitude(), String.format( "%.2f", (distance * 0.621371)));
 					u.save(userData);
 
 					counter++;
@@ -278,7 +278,7 @@ public class HomeController {
 		
 
 		
-
+		percent += 2;
 		
 
 		if (percent > 99) {
