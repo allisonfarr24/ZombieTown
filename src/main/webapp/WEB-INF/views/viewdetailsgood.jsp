@@ -26,9 +26,9 @@
 	<div class="row">
 		<div class="column">
 			<br><h2>Pharmacies</h2>
-			<p>Pharmacies are more likely more than just medical supplies.
-				They're also a great source of food without all the people that a
-				hospital would have</p><br>
+			<p>Pharmacies are a good place to find medications and other supplies, and carry a lot less risk than a hospital.
+				They're also a great place to find dry goods and water without all the people that a
+				hospital or a supermarket might have.</p><br>
 			<table border="1">
 				<thead>
 					<tr>
@@ -49,9 +49,9 @@
 		</div>
 		<div class="column">
 			<br><h2>Prisons</h2>
-			<p>Although built to keep people in, they will also keep zombies
-				out. So their a great source of shelter, will provide plenty food,
-				and likely to have strong resourceful survivors.</p><br>
+			<p>Although built to keep people in, prisons will also keep zombies
+				out. With barbed wire fences and secure buildings, they're a great source of shelter, will provide plenty food,
+				and are likely to have strong resourceful survivors.</p><br>
 				<table border="1">
 				<thead>
 					<tr>
@@ -76,7 +76,7 @@
 		<div class="column">
 			<br><h2>Police</h2>
 			<p>The first line of defense is likely to be abandoned. Officers
-				have an obligation to their families before the the public. So the
+				have an obligation to their families before the public. So the
 				armory will be unprotected.</p> <br>
 				<table border="1">
 				<thead>
@@ -100,7 +100,7 @@
 		
 		<div class="column">
 			<br><h2>Gas Stations</h2>
-			<p>Gasoline and oil is a valuable resource that's easily
+			<p>Gasoline and oil are a valuable resources that can easily be
 				obtained. It's never anyone's first priority, but their most
 				valuable resource.</p><br>
 				<table border="1">
@@ -121,12 +121,17 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<a href="/viewmap"><button class="btn">View Map</button></a>
 		</div>
 		</div>
 		</div>
+<<<<<<< HEAD
 			<div style="text-align: center">
 	<a href="/viewmap"><button class="btn">View Map</button></a>
 		<a href="/"><button class="btn">Search a New Location</button></a><br>
 </div>
+=======
+			
+>>>>>>> 16d1a8b47f248a95a7ac4b9cafb49d5a83327461
 </body>
 </html>

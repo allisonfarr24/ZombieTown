@@ -20,6 +20,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
+<link rel="stylesheet" type="text/css" href="css/main.css"></link>
+
 <!-- The is for auto complete -->
 <script>
 	/* Completes the autocomplete object form google maps 
@@ -49,7 +51,7 @@
 
 
 </head>
-<body>
+<body class="text-center">
 	<div class="centered">
 		<div class="container">
 			<h1>
@@ -70,11 +72,6 @@
 			</form>
 		</div>
 	</div>
-
-	<link rel="stylesheet" type="text/css" href="css/main.css"></link>
-<body class="text-center">
-
-
 
 	<div class="container">
 		<h1></h1>

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+h1{ color:gold;
+	
+}
+
 h2{ color:gold;
 	
 }
@@ -7,9 +11,15 @@ h2{ color:gold;
    background-image: url("/hosp.jpg");
    background-color: #cccccc;
    background-repeat: no-repeat;
-   background-size: 1350px 800px;
+   background-size: cover;
    background-attachment:fixed;
 }
   p{  color:white;
 
 }
+
+table {
+	color: white;
+	border: white;
+}
+

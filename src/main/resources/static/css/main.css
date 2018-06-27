@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 
-   
 
 h1 {
     color: white;
@@ -10,7 +9,8 @@ h1 {
    background-image: url("/zworld3.jpg");
    background-color: #cccccc;
    background-repeat: no-repeat;
-   background-size: 1350px 800px;
+   background-size: cover;
+
 }
   
  
