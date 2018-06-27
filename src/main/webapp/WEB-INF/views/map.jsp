@@ -333,6 +333,7 @@ function initMap() {
 	      marker = new google.maps.Marker({
 	        position: new google.maps.LatLng(myLatLng[i][1], myLatLng[i][2]),
 	        map: map,
+	        animation: google.maps.Animation.DROP
 	      });
 	        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 
@@ -349,7 +350,8 @@ function initMap() {
 	    	
 		      marker = new google.maps.Marker({
 		        position: new google.maps.LatLng(myLatLngBad[i][1], myLatLngBad[i][2]),
-		        map: map
+		        map: map,
+		        animation: google.maps.Animation.DROP
 		      });
 		      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/purple-dot.png');
 		      
