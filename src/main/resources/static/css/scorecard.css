@@ -1,13 +1,36 @@
 @charset "UTF-8";
 
 
+h1{ color:white;
+	
+}
+
+
+h2{ color:white;
+	
+}
+
+
 button {
-    background-color: gray;
+    background-color: #d4d3d6;
 } 
  body {
  
-   background-color: white;
+   background-image: url("/zombiehand.jpg");
+   background-color: #cccccc;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment:fixed;
 
+}
+
+  p{  color:white;
+
+}
+
+table {
+	color: white;
+	border: white;
 }
 
 
