@@ -122,19 +122,14 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
-			<a href="/viewmap"><button class="btn">View Map</button></a>
+		
   </div>
 </div>
 </div>
-<<<<<<< HEAD
 <div style="text-align: center">
 	<a href="/viewmap"><button class="btn">View Map</button></a>
 		<a href="/"><button class="btn">Search a New Location</button></a><br>
 </div>
-=======
-
->>>>>>> 16d1a8b47f248a95a7ac4b9cafb49d5a83327461
 
 </body>
 </html>
