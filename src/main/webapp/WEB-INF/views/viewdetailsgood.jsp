@@ -141,5 +141,6 @@
 		</div>
 		</div>
 		</div>
+			<a href="/viewmap"><button class="btn">View Map</button></a>
 </body>
 </html>
