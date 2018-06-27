@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -23,7 +24,7 @@ import com.zombieproject.ZombieTown.userdata.UserData;
 import com.zombieproject.ZombieTown.userdata.UserDataRepo;
 
 @Controller
-@SessionAttributes({"lat", "lng", "radius"})
+@SessionAttributes({"lati", "longi", "radi"})
 public class HomeController {
 
 	@Value("${zombietown.apikey}")
@@ -38,6 +39,10 @@ public class HomeController {
 	@Autowired
 	UserDataRepo u;
 
+	private double lati;
+	private double longi;
+	private double radi;
+	
 	String[] goodStuff = { "gas_station", "pharmacy", "police" };
 	String[] badStuff = { "hospital", "casino", "shopping_mall", "stadium" };
 
@@ -50,25 +55,34 @@ public class HomeController {
 
 	@RequestMapping("/location")
 	public ModelAndView index(@RequestParam("lat") double lat, @RequestParam("lng") double lng,
-			@RequestParam("radius") double radius, HttpSession session) {
+			@RequestParam("radius") double radius, Model model) {
+		System.out.println("location" + lat + " " + lng + " " + radius);
 		
-		session.setAttribute("lat", lat);
-		session.setAttribute("lng", lng);
-		session.setAttribute("radius", radius);
+		lati = lat;
+		longi = lng;
+		radi = radius;
+//		session.removeAttribute("lati");
+//		session.removeAttribute("longi");
+//		session.removeAttribute("radi");
 		
-		ModelAndView mv = new ModelAndView("map");
+		model.addAttribute("lati", lat);
+		model.addAttribute("longi", lng);
+		model.addAttribute("radi", radius);
+		
+//		ModelAndView mv = new ModelAndView("map");
 		System.out.println(u.count());
-					u.deleteAll();
+		u.deleteAll();
+		System.out.println(u.count());
 		
 
-		ArrayList<GoogleMarks> locations = new ArrayList<>();
+//		ArrayList<GoogleMarks> locations = new ArrayList<>();
 
-		mv.addObject("lat", lat);
-		mv.addObject("lng", lng);
+//		mv.addObject("lat", lat);
+//		mv.addObject("lng", lng);
 		// Items in this array are place that we are searching for
 		String[] arr = { "hospital", "gas_station", "pharmacy", "police", "casino", "shopping_mall", "stadium" };
 		// This array list holds count for each place
-		ArrayList<Integer> count = new ArrayList<>();
+//		ArrayList<Integer> count = new ArrayList<>();
 		// Adds results from the google api
 
 		for (int i = 0; i < arr.length; i++) {
@@ -89,63 +103,58 @@ public class HomeController {
 				u.save(userData);
 
 			}
-
-			count.add(num);
 		}
+		prisonData(lat, lng);
+//			count.add(num);
 		
+		return new ModelAndView("redirect:viewmap");
 		// Adds results from the prison data base
 		// p is the autowire from the prison controller
-		int prison = prisonCount(lat, lng);
-		count.add(4, prison);
-		mv.addObject("place", count);
+//		int prison = prisonCount(lat, lng);
+//		count.add(4, prison);
+//		mv.addObject("place", count);
 
-		List<UserData> datas = u.findAll();
-		for (UserData data : datas) {
-			System.out.println(data);
-			locations.add(dataToMarks(data));
-		}
+//		List<UserData> datas = u.findAll();
+//		for (UserData data : datas) {
+//			System.out.println(data);
+//			locations.add(dataToMarks(data));
+//		}
 		
-		mv.addObject("locations", locations);
+//		mv.addObject("locations", locations);
 
-		int percent = getPercent(count, radius);
-		mv.addObject("percent", percent);
+//		int percent = getPercent(count, radius);
+//		mv.addObject("percent", percent);
 
 
-		return mv;
 	}
 
 	@RequestMapping("/viewmap")
-	public ModelAndView viewmap1(HttpSession session) {
+	public ModelAndView viewmap(Model model) {
 
-		double lat = (double) session.getAttribute("lat");
-
-		double lng = (double) session.getAttribute("lng");
-		double radius = (double) session.getAttribute("radius");
-		
-		System.out.println(""+ lat + " " + lng + " " + radius);
+		System.out.println("viewmap" + lati + " " + longi + " " + radi);
 		ModelAndView mv = new ModelAndView("map");
 		
-		ArrayList<GoogleMarks> locations = new ArrayList<>();
+		ArrayList<GoogleMarks> marks = new ArrayList<>();
 
 		List<UserData> datas = u.findAll();
 		for (UserData data : datas) {
 			System.out.println(data);
-			locations.add(dataToMarks(data));
+			marks.add(dataToMarks(data));
 		}
 		
-		mv.addObject("locations", locations);
+		mv.addObject("locations", marks);
 		
 		
 		ArrayList<Integer> count = getCount();
-		count.add(4, prisonCount(lat, lng));
+//		count.add(4, prisonCount(lati, longi));
 		mv.addObject("place", count);
 
-		int percent = getPercent(count, radius);
+		int percent = getPercent(count, radi);
 		mv.addObject("percent", percent);
 				
 		
-		mv.addObject("lat", lat);
-		mv.addObject("lng", lng);
+		mv.addObject("lat", lati);
+		mv.addObject("lng", longi);
 		return mv;
 	}
 	
@@ -182,7 +191,7 @@ public class HomeController {
 		return Haversine.haversine(lat1, lon1, lat2, lon2);
 	}
 
-	public int prisonCount(double lat, double lng) {
+	public int prisonData(double lat, double lng) {
 		int counter = 0;
 
 		List<Prison> prisonList = p.findAll();
@@ -212,6 +221,7 @@ public class HomeController {
 		count.add(u.findByType("gas_station").size());
 		count.add(u.findByType("pharmacy").size());
 		count.add(u.findByType("police").size());
+		count.add(u.findByType("prison").size());
 		count.add(u.findByType("casino").size());
 		count.add(u.findByType("shopping_mall").size());
 		count.add(u.findByType("stadium").size());
@@ -265,28 +275,4 @@ public class HomeController {
 
 }
 
-// @RequestMapping("/viewdetails")
-// public ModelAndView detials(@RequestParam("lat") double lat,
-// @RequestParam("lng") double lng) {
-// ModelAndView mv = new ModelAndView("viewdetails");
-//
-// String[] arr = { "hospital", "gas_station", "pharmacy", "police" };
-//
-//
-// mv.addObject("lat", lat);
-// mv.addObject("lng", lng);
-// for (int i = 0; i < arr.length; i++) {
-// RestTemplate restTemplate = new RestTemplate();
-// Results result = restTemplate.getForObject(getTypeUrl(lat, lng, arr[i]),
-// Results.class);
-// String[] details = result.getTypes();
-//
-// System.out.println(details);
-//
-// mv.addObject("details", details);
-//
-// }
-// return mv;
-// }
-//
-// }
+

@@ -97,9 +97,9 @@
 
 			ourRequest.onload = function() {
 
-				// console.log(ourRequest.responseText);
+				console.log(ourRequest.responseText);
 				var ourData = JSON.parse(ourRequest.responseText);
-				//renderHTML(ourData);
+				// renderHTML(ourData);
 				document.getElementById("lat").value = ourData.results[0].geometry.location.lat;
 				document.getElementById("lng").value = ourData.results[0].geometry.location.lng;
 				return true;
