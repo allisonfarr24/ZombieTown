@@ -241,24 +241,46 @@ public class HomeController {
 		percent += (count.get(3) * 1.5);
 		percent += (count.get(4) * 2);
 
-		percent = percent - ((count.get(0) * 0.04) * percent);
-
-		percent = percent - ((count.get(5) * 0.02) * percent);
-
-		percent = percent - ((count.get(6) * 0.04) * percent);
-
-		percent = percent - ((count.get(7) * 0.02) * percent);
-		;
-
 		if (radius == 4827) {
-			percent *= .7;
+			
+			percent = percent - ((count.get(0) * 0.02) * percent);
+
+			percent = percent - ((count.get(5) * 0.01) * percent);
+
+			percent = percent - ((count.get(6) * 0.02) * percent);
+
+			percent = percent - ((count.get(7) * 0.01) * percent);
 		}
 		if (radius == 1609) {
+			
+			percent = percent - ((count.get(0) * 0.06) * percent);
+
+			percent = percent - ((count.get(5) * 0.03) * percent);
+
+			percent = percent - ((count.get(6) * 0.06) * percent);
+
+			percent = percent - ((count.get(7) * 0.03) * percent);
+			
 			percent *= .2;
 		}
 		if (radius == 8045) {
-			percent *= 2.5;
+			
+			percent = percent - ((count.get(0) * 0.02) * percent);
+
+			percent = percent - ((count.get(5) * 0.01) * percent);
+
+			percent = percent - ((count.get(6) * 0.02) * percent);
+
+			percent = percent - ((count.get(7) * 0.01) * percent);
+			
+			percent *= 2;
 		}
+		
+
+		
+
+		
+
 		if (percent > 99) {
 			percent = 100;
 		}
