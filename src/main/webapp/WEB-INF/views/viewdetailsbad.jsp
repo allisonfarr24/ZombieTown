@@ -19,7 +19,7 @@
 </head>
 <body>
 
-  <h1 align ="center">Danger Zone</h1>
+  <h1 align ="center">Danger Zones</h1>
 <div class="container">
 <div class="row">
   <div class="column">
@@ -77,7 +77,7 @@
     <br><h2>Stadiums</h2>
     <p>Stadiums may be perhaps the worst choice of places to go in
 		terms of seeking shelter. They contain a lot of smaller places inside
-		one large establishment - perfect for catching you off guard.</p><br>
+		one large establishment - perfect for zombies to catch their prey off guard.</p><br>
 		<table border="1">
 				<thead>
 					<tr>
@@ -100,7 +100,7 @@
 
    <div class="column">
     <br><h2>Shopping Malls</h2>
-    <p>Think a shopping mall is a good place to take shelter? Well, so
+    <p>Thinking a shopping mall is a good place to take shelter? Well, so
 		is everyone else! So, you may want to think again. Malls will quickly
 		become populated with potentially infected people, and with so many
 		people in a confined area, you may not be as safe as you think.</p><br>
@@ -122,11 +122,12 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<a href="/viewmap"><button class="btn">View Map</button></a>
   </div>
 </div>
 </div>
 
-	<a href="/viewmap"><button class="btn">View Map</button></a>
 
 </body>
 </html>

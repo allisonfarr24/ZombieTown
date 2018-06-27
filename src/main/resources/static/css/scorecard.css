@@ -1,20 +1,13 @@
 @charset "UTF-8";
 
 
-
-
-
-
-h1 {
-    color: gold;
-}
+button {
+    background-color: gray;
+} 
  body {
-   background-image: url("/zworld2.jpg");
-   background-color: #cccccc;
-   background-repeat: no-repeat;
-   background-size: 1350px 800px;
-}
-td{  color:white;
+ 
+   background-color: white;
 
 }
+
 

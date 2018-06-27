@@ -400,13 +400,13 @@ function initMap() {
 <body>
 
 	<div class="container mt-3">
-		<h1 style="text-align: center">You have a ${percent }% change of survival!</h1>
+		<h1 style="text-align: center">You have a ${percent }% chance of survival!</h1>
 		<br>
 		<p>Your score is calculated using a formula we created
 		that takes into account your proximity to certain establishments.
 		Being near certain places may increase or decrease your odds of 
 		survival, depending on the type of establishment and how many are
-		within the specified radius</p>
+		within the specified radius.</p>
 	</div>
 
 <div class="container mt-2">
@@ -415,8 +415,8 @@ function initMap() {
 
 <h2>Shelter/Resources</h2>
 <a href="/viewdetailsgood2"><button class="btn">View
-										Details</button></a>
-<table class="table table-hover table-sm">
+										Details</button></a><br>
+<br><table class="table table-hover table-sm">
 									<thead align="center">
 										<tr>
 
@@ -448,8 +448,8 @@ function initMap() {
 								</table>
 <h2>Danger Zones</h2>
 								<a href="/viewdetailsbad2"><button class="btn">View
-										Details</button></a>
-								<table class="table table-hover table-sm">
+										Details</button></a><br>
+								<br><table class="table table-hover table-sm">
 									<thead align="center">
 										<tr>
 
@@ -482,6 +482,8 @@ function initMap() {
 									</tbody>
 								</table>
 
+<a href="/"><button class="btn">Search a New Location</button></a>
+
 </div>
 
 <div id ="map" class="col-8">
@@ -491,7 +493,6 @@ function initMap() {
 </div>
 
 
-	<a href="/"><button class="btn">Search a New Location</button></a>
 
 
 </body>
