@@ -18,6 +18,7 @@ function initMap() {
 
 	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
 	var myLatLng =  ${locations};
+	var myLatLngBad = ${badstuff};
 	
 
 	
@@ -32,18 +33,54 @@ function initMap() {
 	  
 	    var infowindow = new google.maps.InfoWindow();
 	    var marker, i;
-	    for (i = 0; i < myLatLng.length; i++) {  
+	    
+	    for (i = 0; i < myLatLng.length; i++) { 
+	    	
 	      marker = new google.maps.Marker({
 	        position: new google.maps.LatLng(myLatLng[i][1], myLatLng[i][2]),
 	        map: map
 	      });
+	        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
 	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	        return function() {
 	          infowindow.setContent(myLatLng[i][0]);
 	          infowindow.open(map, marker);
 	        }
+	        
 	      })(marker, i));
-	    } initAutocomplete();
+	      
+	    } 
+	    for (i = 0; i < myLatLngBad.length; i++) { 
+	    	
+		      marker = new google.maps.Marker({
+		        position: new google.maps.LatLng(myLatLngBad[i][1], myLatLngBad[i][2]),
+		        map: map
+		      });
+		      
+		      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		        return function() {
+		          infowindow.setContent(myLatLngBad[i][0]);
+		          infowindow.open(map, marker);
+		        }
+		        
+		      })(marker, i));
+		      
+		    }
+	    marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(myLatLng1),
+	        map: map
+	      });
+	        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent('Home Location');
+	          infowindow.open(map, marker);
+	        }
+	        
+	      })(marker, i));
+	    initAutocomplete();
 }
 
 </script>

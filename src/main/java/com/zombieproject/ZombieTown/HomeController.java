@@ -1,9 +1,8 @@
 package com.zombieproject.ZombieTown;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +42,7 @@ public class HomeController {
 	private double longi;
 	private double radi;
 	
-	String[] goodStuff = { "gas_station", "pharmacy", "police" };
+	String[] goodStuff = { "gas_station", "pharmacy", "police", "prison" };
 	String[] badStuff = { "hospital", "casino", "shopping_mall", "stadium" };
 
 	@RequestMapping("/")
@@ -135,14 +134,21 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("map");
 		
 		ArrayList<GoogleMarks> marks = new ArrayList<>();
+		ArrayList<GoogleMarks> badmarks = new ArrayList<>();
 
 		List<UserData> datas = u.findAll();
 		for (UserData data : datas) {
-			System.out.println(data);
-			marks.add(dataToMarks(data));
+			System.out.println(Arrays.asList(goodStuff).contains(data.getType()));
+			if (Arrays.asList(goodStuff).contains(data.getType())) {
+				marks.add(dataToMarks(data));			
+			} else {
+				badmarks.add(dataToMarks(data));
+			}
 		}
 		
 		mv.addObject("locations", marks);
+		
+		mv.addObject("badstuff", badmarks);
 		
 		
 		ArrayList<Integer> count = getCount();
