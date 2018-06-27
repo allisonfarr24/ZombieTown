@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+h2{ color:gold;
+	
+}
+ body {
+   background-image: url("/hosp.jpg");
+   background-color: #cccccc;
+   background-repeat: no-repeat;
+   background-size: 1350px 800px;
+}
+  p{  color:white;
+
+}
