@@ -18,6 +18,7 @@ function initMap() {
 
 	 var myLatLng1 = {lat: ${lat}, lng: ${lng}};
 	var myLatLng =  ${locations};
+	var myLatLngBad = ${badstuff};
 	
 
 	
@@ -32,31 +33,56 @@ function initMap() {
 	  
 	    var infowindow = new google.maps.InfoWindow();
 	    var marker, i;
-	    for (i = 0; i < myLatLng.length; i++) {  
+	    
+	    for (i = 0; i < myLatLng.length; i++) { 
+	    	
 	      marker = new google.maps.Marker({
 	        position: new google.maps.LatLng(myLatLng[i][1], myLatLng[i][2]),
 	        map: map
 	      });
+	        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
 	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
 	        return function() {
 	          infowindow.setContent(myLatLng[i][0]);
 	          infowindow.open(map, marker);
 	        }
+	        
 	      })(marker, i));
-	    } initAutocomplete();
+	      
+	    } 
+	    for (i = 0; i < myLatLngBad.length; i++) { 
+	    	
+		      marker = new google.maps.Marker({
+		        position: new google.maps.LatLng(myLatLngBad[i][1], myLatLngBad[i][2]),
+		        map: map
+		      });
+		      
+		      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+		        return function() {
+		          infowindow.setContent(myLatLngBad[i][0]);
+		          infowindow.open(map, marker);
+		        }
+		        
+		      })(marker, i));
+		      
+		    }
+	    marker = new google.maps.Marker({
+	        position: new google.maps.LatLng(myLatLng1),
+	        map: map
+	      });
+	        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/yellow-dot.png');
+
+	      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+	        return function() {
+	          infowindow.setContent('Home Location');
+	          infowindow.open(map, marker);
+	        }
+	        
+	      })(marker, i));
+	    initAutocomplete();
 }
-    
-	function initAutocomplete() {
-		autocomplete = new google.maps.places.Autocomplete((document
-				.getElementById("address")), {
-			types : [ 'geocode' ]
-		}); 
-		autocomplete.addListener('place_changed', fillInAddress);
-	}
-	function fillInAddress() {
-		var place = autocomplete.getPlace();
-		getCoordinates(place);
-	}
+
 </script>
 
 <script
@@ -84,7 +110,7 @@ function initMap() {
 <div class="col-4">
 
 <h2>Shelter/Resources</h2>
-<a href="/viewdetailsgood"><button class="btn">View
+<a href="/viewdetailsgood2"><button class="btn">View
 										Details</button></a>
 <table class="table table-hover table-sm">
 									<thead align="center">
@@ -117,7 +143,7 @@ function initMap() {
 									</tbody>
 								</table>
 <h2>Danger Zones</h2>
-								<a href="/viewdetailsbad"><button class="btn">View
+								<a href="/viewdetailsbad2"><button class="btn">View
 										Details</button></a>
 								<table class="table table-hover table-sm">
 									<thead align="center">
@@ -164,26 +190,5 @@ function initMap() {
 	<a href="/"><button class="btn">Search a New Location</button></a>
 
 
-	<script type="text/javascript">
-		function getCoordinates(place) {
-			var btn = place.formatted_address;
-			var ourRequest = new XMLHttpRequest();
-			ourRequest.open("GET",
-					"https://maps.googleapis.com/maps/api/geocode/json?address="
-							+ btn
-							+ "&key=AIzaSyBBv02Hfn1WGHxGSpihcZjOQHiPoK1hG88");
-
-			ourRequest.onload = function() {
-				var ourData = JSON.parse(ourRequest.responseText);
-				document.getElementById("lat").value = ourData.results[0].geometry.location.lat;
-				document.getElementById("lng").value = ourData.results[0].geometry.location.lng;
-				return false;
-			};
-			ourRequest.send();
-		}
-		
-		
-		
-	
-</script></body>
+</body>
 </html>
