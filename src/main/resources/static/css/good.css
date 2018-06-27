@@ -1,4 +1,22 @@
 @charset "UTF-8";
 
 
-body {background-color: coral;}
+
+h2{ color:gold;
+	
+}
+ body {
+   background-image: url("/hosp.jpg");
+   background-color: #cccccc;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-attachment:fixed;
+}
+  p{  color:white;
+
+}
+
+table {
+	color: white;
+	border: white;
+}
