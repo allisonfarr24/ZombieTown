@@ -8,6 +8,7 @@ h2{ color:gold;
    background-color: #cccccc;
    background-repeat: no-repeat;
    background-size: 1350px 800px;
+   background-attachment:fixed;
 }
   p{  color:white;
 
