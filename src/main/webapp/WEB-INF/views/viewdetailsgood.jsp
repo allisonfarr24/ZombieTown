@@ -124,6 +124,9 @@
 		</div>
 		</div>
 		</div>
-			<a href="/viewmap"><button class="btn">View Map</button></a>
+			<div style="text-align: center">
+	<a href="/viewmap"><button class="btn">View Map</button></a>
+		<a href="/"><button class="btn">Search a New Location</button></a><br>
+</div>
 </body>
 </html>
