@@ -11,28 +11,12 @@
     rel="stylesheet"
     integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
-
+		<link rel="stylesheet" type="text/css" href="css/good.css"></link>
 <title>Details Page</title>
 </head>
 <body>
 
-	<!-- <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-	<style> -->
-<!-- * {
-	box-sizing: border-box;
-}
-
-/* .column {
-	float: left;
-	width: 50%;
-	padding: 10px;
-	height: 300px; .
-	row: after{
-    content: "";
-	display: table;
-	clear: both;
-} */ -->
-<!-- </style>  -->
+	
 </head>
 <body>
 
@@ -59,7 +43,6 @@
 							<td>${pharm.name }</td>
 							<td>${pharm.distance }</td>
 						</tr>
-
 					</c:forEach>
 				</tbody>
 			</table>
